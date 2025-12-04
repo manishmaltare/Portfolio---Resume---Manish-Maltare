@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Manish Maltare - Portfolio with Background Image and Project Grid"""
+"""Manish Maltare - Portfolio with Horizontal Top Navigation"""
 
 import streamlit as st
 import docx
@@ -30,34 +30,36 @@ st.markdown("""
     color: white !important;
 }
 
-/* SIDEBAR - semi-transparent black */
-section[data-testid="stSidebar"] {
+/* HORIZONTAL NAV BAR */
+.top-nav {
+    width: 100%;
     background-color: rgba(0,0,0,0.6);
-    padding: 20px;
-    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    border-radius: 0 0 10px 10px;
 }
-
-/* Sidebar title */
-.sidebar-title {
-    font-size: 28px;
-    font-weight: 800;
-    color: #FFFFFF; /* White for contrast */
-    margin-bottom: 30px;
+.top-nav button {
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    color: #FFFECB;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
 }
-
-/* Sidebar menu options - light vibrant color */
-div[data-testid="stSidebar"] label, 
-div[data-testid="stSidebar"] span,
-div[data-testid="stSidebar"] .stRadio label {
-    color: #FFFECB !important; /* Light vibrant yellow */
-    font-weight: 600 !important;
-    font-size: 16px;
+.top-nav button:hover {
+    background-color: rgba(255,255,255,0.3);
+    color: black;
 }
 
 /* MAIN CONTENT AREA */
 .block-container {
-    padding-left: 150px !important;
-    padding-right: 150px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
     color: white !important;
 }
 
@@ -67,7 +69,7 @@ div[data-testid="stSidebar"] .stRadio label {
     font-weight: 900;
     color: white;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .sub-title-tagline {
@@ -179,19 +181,41 @@ def render_project_details(project_name):
             st.markdown(f"<a href='{url}' target='_blank' class='project-btn'>{title}</a>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
-# ---------------------------- SIDEBAR ----------------------------
-st.sidebar.markdown(
-    "<div class='sidebar-title'>Manish Maltare<br>Digital Portfolio</div>",
-    unsafe_allow_html=True
-)
+# ---------------------------- HORIZONTAL TOP NAV ----------------------------
+menu = None
+st.markdown("""
+<div class="top-nav">
+<form action="">
+<input type="submit" name="menu" value="About Me">
+<input type="submit" name="menu" value="Projects">
+<input type="submit" name="menu" value="Resume Download">
+<input type="submit" name="menu" value="Contact Me">
+</form>
+</div>
+""", unsafe_allow_html=True)
 
-menu = st.sidebar.radio(
-    "Navigation",
-    ["About Me", "Projects", "Resume Download", "Contact Me"]
-)
+# Fallback if menu is not set
+if 'menu' not in st.session_state:
+    st.session_state.menu = "About Me"
+
+# Use Streamlit buttons to select menu
+col1, col2, col3, col4 = st.columns([1,1,1,1])
+with col1:
+    if st.button("About Me"):
+        st.session_state.menu = "About Me"
+with col2:
+    if st.button("Projects"):
+        st.session_state.menu = "Projects"
+with col3:
+    if st.button("Resume Download"):
+        st.session_state.menu = "Resume Download"
+with col4:
+    if st.button("Contact Me"):
+        st.session_state.menu = "Contact Me"
+
+menu = st.session_state.menu
 
 # ---------------------------- PAGE ROUTING ----------------------------
-
 if menu == "About Me":
     st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
