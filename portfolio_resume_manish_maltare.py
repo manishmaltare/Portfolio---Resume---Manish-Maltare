@@ -220,6 +220,7 @@ def load_links():
 links = load_links()
 
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
+# ---------------------------- PROJECT FUNCTIONS ----------------------------
 def get_project_links(project_name):
     result = {}
     mapping = {
@@ -258,10 +259,14 @@ def render_docx_block(title, body_html, project_name=None):
                     unsafe_allow_html=True
                 )
 
-
 def render_project_details(project_name):
     if project_name == "NLP - Sentiment Analysis":
-        render_nlp_project()
+        body_html = nlp_text.replace("\n", "<br>") if nlp_text else "NLP DOCX not found."
+        render_docx_block(
+            "NLP - Sentiment Analysis",
+            body_html,
+            project_name
+        )
 
     elif project_name == "Logistic Regression - Titanic Survival Prediction":
         body_html = logreg_text.replace("\n", "<br>") if logreg_text else "Logistic Regression DOCX not found."
