@@ -255,21 +255,20 @@ def render_circle_links_fixed(project_name):
 
 
 def render_docx_block(title, body_html, project_name=None):
-    st.markdown(
-        f"<div class='hover-card'><h3>{title}</h3></div>",
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        f"""
-        <div class='hover-card' style="margin-top:10px;">
-            {body_html}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-    if project_name:
-        render_circle_links_fixed(project_name)
-
+    st.markdown(
+        f"<div class='hover-card'><h3>{title}</h3></div>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        f"""
+        <div class='hover-card' style="margin-top:10px;">
+            {body_html}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if project_name:
+        render_circle_links_fixed(project_name)
 
 def render_project_details(project_name):
     if project_name == "NLP - Sentiment Analysis":
