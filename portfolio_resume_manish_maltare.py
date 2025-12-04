@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Manish Maltare - Portfolio with Top Transparent Navigation Ribbon (Text Only)"""
+"""Manish Maltare - Portfolio with Text-Only Buttons and Top Transparent Navigation"""
 
 import streamlit as st
 import docx
@@ -46,7 +46,7 @@ st.markdown("""
 
 /* Text-only navigation links */
 .top-nav button {
-    background-color: transparent; /* remove background box */
+    background-color: transparent; /* remove background */
     border: none;
     color: #FFFECB; /* turquoise */
     font-size: 18px;
@@ -91,23 +91,22 @@ st.markdown("""
     margin-bottom: 20px;
 }
 
-/* Project buttons */
+/* Project buttons - now text only */
 .project-btn {
-    padding: 10px 15px;
+    background-color: transparent !important;
+    color: #FFFECB;
+    border: none !important;
     font-size: 16px;
     font-weight: 600;
-    border-radius: 8px;
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    margin-bottom: 15px;
-    width: 100%;
+    padding: 5px 0;
     text-align: left;
+    width: 100%;
+    cursor: pointer;
     transition: 0.3s;
 }
 .project-btn:hover {
-    background-color: rgba(255,255,255,0.3);
-    color: black;
-    cursor: pointer;
+    color: #FFD700;
+    text-decoration: underline;
 }
 
 /* Project details card */
@@ -181,10 +180,8 @@ def render_project_details(project_name):
     st.markdown(f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>", unsafe_allow_html=True)
     proj_links = get_project_links(project_name)
     if proj_links:
-        st.markdown("<div class='link-btn'>", unsafe_allow_html=True)
         for title, url in proj_links.items():
-            st.markdown(f"<a href='{url}' target='_blank' class='project-btn'>{title}</a>", unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
+            st.markdown(f"<button class='project-btn' onclick=\"window.open('{url}','_blank')\">{title}</button>", unsafe_allow_html=True)
 
 # ---------------------------- TOP NAVIGATION (TEXT ONLY) ----------------------------
 col1, col2, col3, col4 = st.columns([1,1,1,1])
