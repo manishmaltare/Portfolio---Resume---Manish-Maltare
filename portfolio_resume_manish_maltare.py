@@ -14,37 +14,6 @@ st.set_page_config(
 # ---------------------------- CUSTOM CSS ----------------------------
 st.markdown("""
 <style>
-/* FIX STREAMLIT RADIO LABEL COLOR */
-.st-emotion-cache-1p3kisu, 
-.st-emotion-cache-1p3kisu * {
-    color: #FFD300 !important;
-    font-weight: 600 !important;
-}
-
-/* NEW Radio label class (Streamlit 2024 update) */
-.st-emotion-cache-6qob1r, 
-.st-emotion-cache-6qob1r * {
-    color: #FFD300 !important;
-    font-weight: 600 !important;
-}
-
-/* Selected radio button circle */
-.stRadio > label > div[role="radiogroup"] > label[data-selected="true"] div:first-child {
-    background-color: #FFD300 !important;
-    border: 2px solid #FFD300 !important;
-}
-
-/* Unselected circles */
-.stRadio > label > div[role="radiogroup"] > label div:first-child {
-    border: 2px solid #FFD300 !important;
-}
-
-/* Hover highlight */
-.st-emotion-cache-1p3kisu:hover,
-.st-emotion-cache-6qob1r:hover {
-    color: #FFE45C !important;
-    text-shadow: 0px 0px 10px rgba(255, 211, 0, 0.5);
-}
 
 @import url('https://fonts.cdnfonts.com/css/copperplate-gothic');
 
@@ -53,9 +22,9 @@ st.markdown("""
     font-family: 'Copperplate Gothic', sans-serif !important;
 }
 
-/* PAGE BACKGROUND */
+/* PAGE BACKGROUND - BLACK */
 body {
-    background-color: #FFFFFF !important;
+    background-color: #000000 !important;
 }
 
 /* CONTAINER WIDTH (NARROW CENTERED LOOK) */
@@ -63,6 +32,16 @@ body {
     padding-left: 180px !important;
     padding-right: 180px !important;
     animation: fadeSlideZoom 0.7s ease-in-out;
+    background-color: #000000 !important;
+}
+
+/* MAIN CONTENT AREA - BLACK BACKGROUND */
+.main {
+    background-color: #000000 !important;
+}
+
+[data-testid="stAppViewContainer"] {
+    background-color: #000000 !important;
 }
 
 /* MIXED ANIMATION */
@@ -71,55 +50,130 @@ body {
     100% { opacity: 1; transform: translateY(0px) scale(1); }
 }
 
-# ---------------------- SIDEBAR ---------------------- */
+/* ---------------------- SIDEBAR - WHITE BACKGROUND ---------------------- */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #000000 0%, #111111 50%, #1A1A1A 100%);
+    background-color: #FFFFFF !important;
     padding: 30px 20px;
 }
 
-/* SIDEBAR TITLE (TWO-LINE HEADING) */
+/* SIDEBAR TITLE - BLACK TEXT */
 .sidebar-title {
     font-size: 28px;
     font-weight: 800;
-    color: white;
+    color: #000000 !important;
     text-align: left;
     line-height: 1.1;
     margin-bottom: 40px;
 }
 
-/* NAV ITEMS - MAKE TEXT YELLOW/WHITE */
+/* NAV ITEMS - BLACK TEXT */
 div[data-testid="stSidebar"] label,
 div[data-testid="stSidebar"] span {
-    color: #FFD700 !important;  /* Yellow */
+    color: #000000 !important;
     font-weight: 600 !important;
 }
 
 /* RADIO BUTTON OPTIONS (Navigation Items) */
 div[data-testid="stSidebar"] .st-radio > label > div {
-    color: #FFD700 !important;
+    color: #000000 !important;
 }
 
 /* RADIO BUTTON TEXT */
 div[data-testid="stSidebar"] .st-radio label span {
-    color: #FFD700 !important;
+    color: #000000 !important;
     font-size: 16px !important;
 }
 
 /* ALL TEXT IN SIDEBAR */
 div[data-testid="stSidebar"] * {
-    color: #FFD700 !important;
+    color: #000000 !important;
 }
 
 /* RADIO BUTTON HOVER */
 div[data-testid="stSidebar"] .st-radio:hover {
-    background-color: rgba(255, 215, 0, 0.1) !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 /* SELECTED RADIO BUTTON */
 div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {
-    color: #FFFFFF !important;
+    color: #000000 !important;
 }
 
+/* ---------------------- TITLES - WHITE TEXT ON BLACK ---------------------- */
+
+.main-title {
+    font-size: 55px;
+    font-weight: 900;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+.sub-title-tagline {
+    font-size: 28px;
+    font-weight: 600;
+    color: #CCCCCC;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* PROJECT TITLE */
+.project-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 30px;
+}
+
+/* CONTENT CARD WITH HOVER EFFECT */
+.hover-card {
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #1A1A1A;
+    border: 1px solid #333333;
+    color: #E8E8E8;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+    background-color: #252525;
+}
+
+/* BUTTON LINKS */
+.link-btn a {
+    padding: 8px 15px;
+    margin-right: 10px;
+    background-color: white;
+    color: black !important;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    border: 1px solid white;
+    transition: 0.3s;
+}
+.link-btn a:hover {
+    background-color: #000000;
+    color: white !important;
+    border-color: white;
+}
+
+/* TEXT COLOR - WHITE ON BLACK */
+.stMarkdown, .stWrite, .stText {
+    color: #E8E8E8 !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 /* ---------------------- TITLES ---------------------- */
 
