@@ -71,18 +71,15 @@ st.markdown("""
     color:#FFD700;
 }
 
-/* Sidebar Title/Footer (MODIFIED: Color Black, Increased Size, Fixed Bottom Position) */
-[data-testid="stSidebar"] .sidebar-footer-new {
-    position: fixed; /* Ensures it stays at the bottom of the screen */
-    bottom: 20px;
+/* Sidebar Header Text (New/Reverted Position: TOP of sidebar) */
+.sidebar-header-new {
     text-align: center;
-    width: inherit; /* Inherit width from its parent to span the sidebar */
-    font-weight: 800; /* Extra bold */
-    font-size: 18px; /* Increased font size */
-    padding: 10px 0;
-    color: #000000; /* Changed color to black */
-    background-color: rgba(255, 255, 255, 0.7); /* Optional: Slight white background for visibility on dark theme */
-    border-radius: 5px;
+    width: 100%;
+    font-weight: bold;
+    color: #FFFECB; /* Reverted to a light color */
+    margin-bottom: 20px;
+    font-size: 16px; /* Reverted to a normal size */
+    padding-top: 20px;
 }
 
 /* Increase font size for sidebar radio options (Navigation) */
@@ -239,7 +236,7 @@ def render_circle_links_fixed(project_name):
             "App Link": "https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/",
         },
         "Machine Learning Insights into GDP Drivers": {
-            "Presentation": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LMR5775P1T/view?usp=sharing",
+            "Report": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing", # UPDATED LABEL AND URL
             "GitHub - Script": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
             "GitHub - Deployment": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
             "YouTube Video": "https://youtu.be/y6vTDqyEPdw?si=9x0Zb8B-2KPosX0R",
@@ -318,16 +315,10 @@ def render_project_details(project_name):
 
 # ---------------------------- SIDEBAR ----------------------------
 
-# 1. Navigation element
-menu = st.sidebar.radio(
-    "Navigation",
-    ["About Me", "Projects", "Resume", "Contact Me"]
-)
-
-# 2. Sidebar Title/Footer (Placed outside the absolute position block)
+# 1. Sidebar Title/Header (MOVED TO TOP)
 st.sidebar.markdown(
     """
-    <div class="sidebar-footer-new">
+    <div class="sidebar-header-new">
         Digital Portfolio<br>
         Manish Maltare
     </div>
@@ -335,10 +326,16 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
+# 2. Navigation element
+menu = st.sidebar.radio(
+    "Navigation",
+    ["About Me", "Projects", "Resume", "Contact Me"]
+)
+
 # ---------------------------- PAGE ROUTING ----------------------------
 if menu == "About Me":
     st.markdown('<a id="about"></a>', unsafe_allow_html=True)
-    # Header reverted to single column, center alignment (image removed)
+    
     st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
@@ -402,7 +399,6 @@ elif menu == "Contact Me":
 
 # ---------------------------- GLOBAL FOOTER ----------------------------
 st.markdown(
-    # Removed bold formatting (**)
     "<div style='text-align:center; margin-top: 50px; padding: 20px; background-color: rgba(0,0,0,0.5); border-radius: 10px;'>Website created by Manish Maltare</div>",
     unsafe_allow_html=True
 )
