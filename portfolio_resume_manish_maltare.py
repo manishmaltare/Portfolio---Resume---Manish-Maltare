@@ -27,6 +27,10 @@ body {
     background-color: #000000 !important;
 }
 
+/* ... rest of your CSS ... */
+
+</style>
+""", unsafe_allow_html=True)
 /* CONTAINER WIDTH (NARROW CENTERED LOOK) */
 .block-container {
     padding-left: 180px !important;
