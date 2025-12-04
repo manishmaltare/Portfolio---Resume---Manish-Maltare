@@ -71,13 +71,22 @@ st.markdown("""
     color:#FFD700;
 }
 
-/* Sidebar footer text */
-.sidebar-footer {
-    position: absolute;
-    bottom: 20px;
+/* Sidebar footer text (REMOVED absolute positioning) */
+.sidebar-footer-new {
     text-align: center;
     width: 100%;
     font-weight: bold;
+    margin-top: 50px; /* Space it out from the radio buttons */
+    padding: 10px 0;
+    color: #FFFECB;
+}
+
+/* Increase font size for sidebar radio options (Navigation) */
+/* Targets the labels within the radio group container */
+div[data-testid="stSidebar"] div[role="radiogroup"] label {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    padding: 5px 0;
 }
 
 /* Main content container padding */
@@ -184,7 +193,8 @@ st.markdown("""
 <div class="top-nav">
     <a href="#about">About Me</a>
     <a href="#projects">Projects</a>
-    <a href="#resume">Resume</a> <a href="#contact">Contact Me</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact Me</a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -304,9 +314,17 @@ def render_project_details(project_name):
         )
 
 # ---------------------------- SIDEBAR ----------------------------
+
+# 1. Navigation element
+menu = st.sidebar.radio(
+    "Navigation",
+    ["About Me", "Projects", "Resume", "Contact Me"]
+)
+
+# 2. Sidebar Title/Footer (Moved to below the radio buttons and using new CSS)
 st.sidebar.markdown(
     """
-    <div class="sidebar-footer">
+    <div class="sidebar-footer-new">
         Digital Portfolio<br>
         Manish Maltare
     </div>
@@ -314,15 +332,10 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
-menu = st.sidebar.radio(
-    "Navigation",
-    ["About Me", "Projects", "Resume", "Contact Me"] # Changed Resume Download to Resume
-)
-
 # ---------------------------- PAGE ROUTING ----------------------------
 if menu == "About Me":
     st.markdown('<a id="about"></a>', unsafe_allow_html=True)
-    # Reverting to original layout without columns and image
+    # Header reverted to single column, center alignment (image removed)
     st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
@@ -349,7 +362,7 @@ elif menu == "Projects":
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Classification </h3>", unsafe_allow_html=True)
         if st.button("NLP - Sentiment Analysis"):
             st.session_state["selected_project"] = "NLP - Sentiment Analysis"
         if st.button("Logistic Regression - Titanic Survival Prediction"):
@@ -365,7 +378,7 @@ elif menu == "Projects":
     if st.session_state.get("selected_project"):
         render_project_details(st.session_state["selected_project"])
 
-elif menu == "Resume": # Changed Resume Download to Resume
+elif menu == "Resume":
     st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
     with open("Resume - Manish Maltare - final.pdf", "rb") as f:
