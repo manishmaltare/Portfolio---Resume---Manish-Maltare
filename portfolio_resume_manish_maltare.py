@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Portfolio Resume - Manish Maltare | Nested Projects, Black & White Theme"""
+"""Portfolio Resume - Manish Maltare | Projects Grid Layout"""
 
 import streamlit as st
 import docx
@@ -89,27 +89,40 @@ div[data-testid="stSidebar"] .stRadio > label > div {
     margin-bottom: 20px;
 }
 
-/* PROJECT TITLE */
-.project-title {
-    font-size: 22px;
+/* PROJECT CATEGORY TITLE */
+.project-category {
+    font-size: 28px;
     font-weight: 700;
     color: #FFFFFF;
-    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
-/* CONTENT CARD */
-.hover-card {
-    padding: 18px;
+/* PROJECT CARD */
+.project-card {
+    padding: 15px;
     border-radius: 10px;
     background-color: #1A1A1A;
     border: 1px solid #333333;
     color: #E8E8E8;
+    text-align: center;
+    cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin-bottom: 15px;
 }
-.hover-card:hover {
+.project-card:hover {
     transform: translateY(-4px);
     box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
     background-color: #252525;
+}
+
+/* PROJECT DETAILS */
+.project-detail {
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #252525;
+    border: 1px solid #555555;
+    color: #E8E8E8;
+    margin-top: 10px;
 }
 
 /* BUTTON LINKS */
@@ -181,14 +194,18 @@ def get_project_links(project_name):
             result[label] = match[0]
     return result
 
-def render_project(project_name):
-    st.markdown(f"<div class='project-title'>{project_name}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='hover-card'>{extract_project_section(project_name)}</div>", unsafe_allow_html=True)
-    proj_links = get_project_links(project_name)
-    if proj_links:
-        st.markdown("<div class='link-btn'>", unsafe_allow_html=True)
-        for title, url in proj_links.items():
-            st.markdown(f"<a href='{url}' target='_blank'>{title}</a>", unsafe_allow_html=True)
+def render_project_card(project_name):
+    """Creates a clickable project card which expands to show details"""
+    if st.button(project_name):
+        st.markdown(f"<div class='project-detail'>", unsafe_allow_html=True)
+        st.markdown(f"### {project_name}", unsafe_allow_html=True)
+        st.markdown(extract_project_section(project_name))
+        proj_links = get_project_links(project_name)
+        if proj_links:
+            st.markdown("<div class='link-btn'>", unsafe_allow_html=True)
+            for title, url in proj_links.items():
+                st.markdown(f"<a href='{url}' target='_blank'>{title}</a>", unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------------------- SIDEBAR ----------------------------
@@ -211,26 +228,22 @@ if menu == "About Me":
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
     st.write(about_text)
 
-# PROJECTS PAGE WITH SUBCATEGORIES
+# PROJECTS PAGE - GRID LAYOUT
 elif menu == "Projects":
     st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
 
-    # Select Regression or Classification
-    project_type = st.selectbox("Select Project Type", ["Regression", "Classification"])
+    # Create 2 columns for Regression and Classification
+    col1, col2 = st.columns(2)
 
-    if project_type == "Regression":
-        regression_project = st.selectbox(
-            "Select Regression Project",
-            ["Solar Panel Regression", "Machine Learning Insights into GDP Drivers"]
-        )
-        render_project(regression_project)
+    with col1:
+        st.markdown("<div class='project-category'>Classification</div>", unsafe_allow_html=True)
+        render_project_card("NLP - Sentiment Analysis")
+        render_project_card("Logistic Regression - Titanic Survival Prediction")
 
-    elif project_type == "Classification":
-        classification_project = st.selectbox(
-            "Select Classification Project",
-            ["NLP - Sentiment Analysis", "Logistic Regression - Titanic Survival Prediction"]
-        )
-        render_project(classification_project)
+    with col2:
+        st.markdown("<div class='project-category'>Regression</div>", unsafe_allow_html=True)
+        render_project_card("Solar Panel Regression")
+        render_project_card("Machine Learning Insights into GDP Drivers")
 
 # RESUME PAGE
 elif menu == "Resume Download":
