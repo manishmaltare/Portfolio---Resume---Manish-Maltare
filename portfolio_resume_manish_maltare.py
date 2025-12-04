@@ -1,17 +1,9 @@
+# -*- coding: utf-8 -*-
+"""Manish Maltare - Portfolio with Background Image and Project Grid"""
+
 import streamlit as st
 import docx
 import re
-import base64
-
-# Function to encode image to base64 string
-def get_base64_of_bin_file(bin_file):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-
-# Encode your image file here
-img_path = "5072609.jpg"  # your image file in the same directory
-img_base64 = get_base64_of_bin_file(img_path)
 
 # ---------------------------- PAGE CONFIG ----------------------------
 st.set_page_config(
@@ -20,201 +12,118 @@ st.set_page_config(
 )
 
 # ---------------------------- CUSTOM CSS ----------------------------
-st.markdown(f"""
+st.markdown("""
 <style>
-
 @import url('https://fonts.cdnfonts.com/css/copperplate-gothic');
 
 /* GLOBAL FONT */
-* {{
+* {
     font-family: 'Copperplate Gothic', sans-serif !important;
-}}
+}
 
-/* PAGE BACKGROUND IMAGE - base64 embedded */
-body {{
-    background-image: url("data:image/jpg;base64,{img_base64}");
+/* PAGE BACKGROUND IMAGE */
+[data-testid="stAppViewContainer"] {
+    background-image: url("https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/5072609.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     background-attachment: fixed;
     color: white !important;
-}}
+}
 
-/* CONTAINER WIDTH */
-.block-container {{
-    padding-left: 180px !important;
-    padding-right: 180px !important;
-    animation: fadeSlideZoom 0.7s ease-in-out;
-    background-color: rgba(0,0,0,0.5) !important; /* semi-transparent overlay for readability */
-}}
+/* SIDEBAR - semi-transparent black */
+section[data-testid="stSidebar"] {
+    background-color: rgba(0,0,0,0.6);
+    padding: 20px;
+    color: white;
+}
 
-/* MAIN CONTENT AREA */
-.main {{
-    background-color: transparent !important;
-}}
-
-[data-testid="stAppViewContainer"] {{
-    background-color: transparent !important;
-}}
-
-/* MIXED ANIMATION */
-@keyframes fadeSlideZoom {{
-    0% {{ opacity: 0; transform: translateY(25px) scale(0.96); }}
-    100% {{ opacity: 1; transform: translateY(0px) scale(1); }}
-}}
-
-/* SIDEBAR - LIGHT GREY WITH BLACK TEXT */
-section[data-testid="stSidebar"] {{
-    background-color: #D3D3D3 !important;
-    padding: 20px 15px;
-    width: 220px !important;
-    color: black !important;
-}}
-
-/* SIDEBAR TITLE - BLACK TEXT */
-.sidebar-title {{
+/* Sidebar title */
+.sidebar-title {
     font-size: 28px;
     font-weight: 800;
-    color: #000000 !important;
-    text-align: left;
-    line-height: 1.1;
-    margin-bottom: 40px;
-}}
+    color: white;
+    margin-bottom: 30px;
+}
 
-/* NAV ITEMS - BLACK TEXT */
-div[data-testid="stSidebar"] label,
-div[data-testid="stSidebar"] span {{
-    color: #000000 !important;
+/* Sidebar menu options */
+div[data-testid="stSidebar"] label, 
+div[data-testid="stSidebar"] span {
+    color: white !important;
     font-weight: 600 !important;
-}}
+    font-size: 16px;
+}
 
-/* RADIO BUTTON OPTIONS */
-div[data-testid="stSidebar"] .st-radio > label > div {{
-    color: #000000 !important;
-}}
+/* MAIN CONTENT AREA */
+.block-container {
+    padding-left: 150px !important;
+    padding-right: 150px !important;
+    color: white !important;
+}
 
-/* RADIO BUTTON TEXT */
-div[data-testid="stSidebar"] .st-radio label span {{
-    color: #000000 !important;
-    font-size: 16px !important;
-}}
-
-/* ALL TEXT IN SIDEBAR */
-div[data-testid="stSidebar"] * {{
-    color: #000000 !important;
-}}
-
-/* RADIO BUTTON HOVER */
-div[data-testid="stSidebar"] .st-radio:hover {{
-    background-color: rgba(0, 0, 0, 0.1) !important;
-}}
-
-/* SELECTED RADIO BUTTON */
-div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {{
-    color: #000000 !important;
-}}
-
-/* TITLES - WHITE TEXT */
-.main-title {{
+/* Titles */
+.main-title {
     font-size: 55px;
     font-weight: 900;
     color: white;
     text-align: center;
     margin-top: 10px;
-    margin-bottom: -10px;
-}}
+}
 
-.sub-title-tagline {{
+.sub-title-tagline {
     font-size: 28px;
-    font-weight: 600;
-    color: #dddddd;
-    text-align: center;
-    margin-bottom: 45px;
-}}
-
-.section-title {{
-    font-size: 32px;
-    font-weight: 700;
     color: white;
-    margin-top: 40px;
-    margin-bottom: 20px;
-}}
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-/* PROJECT CATEGORY TITLE */
-.project-category {{
-    font-size: 24px;
-    font-weight: 700;
+.section-title {
+    font-size: 32px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Project buttons */
+.project-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.5);
     color: white;
     margin-bottom: 15px;
-}}
-
-/* PROJECT BUTTON CONTAINER */
-.project-button {{
-    margin-bottom: 30px;
-}}
-
-/* Reduce font size of project buttons */
-.project-button button {{
-    font-size: 14px !important;
-    padding: 8px 12px !important;
-    border-radius: 8px !important;
-    width: 100% !important;
-    text-align: center !important;
-    margin-bottom: 10px !important;
-    color: white !important;
-    background-color: rgba(0,0,0,0.6) !important;
-    border: none !important;
-    transition: background-color 0.3s ease;
-}}
-
-.project-button button:hover {{
-    background-color: rgba(255,255,255,0.3) !important;
-    color: white !important;
+    width: 100%;
+    text-align: left;
+    transition: 0.3s;
+}
+.project-btn:hover {
+    background-color: rgba(255,255,255,0.3);
+    color: black;
     cursor: pointer;
-}}
+}
 
-/* CONTENT CARD WITH HOVER EFFECT */
-.hover-card {{
-    padding: 18px;
+/* Project details card */
+.hover-card {
+    padding: 15px;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.6);
-    border: 1px solid #999999;
     color: white;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    white-space: pre-line;
-}}
-.hover-card:hover {{
-    transform: translateY(-4px);
-    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
-}}
+    margin-top: 20px;
+}
+.hover-card h3 {
+    margin-top: 0;
+}
 
-/* BUTTON LINKS */
-.link-btn a {{
-    padding: 8px 15px;
-    margin-right: 10px;
-    background-color: white;
-    color: black !important;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 15px;
-    border: 1px solid white;
-    transition: 0.3s;
-}}
-.link-btn a:hover {{
-    background-color: black;
-    color: white !important;
-    border-color: white;
-}}
-
-/* TEXT COLOR - WHITE FOR BODY */
-.stMarkdown, .stWrite, .stText {{
-    color: white !important;
-}}
-
+/* Grid layout */
+.grid-container {
+    display: flex;
+    gap: 50px;
+}
+.grid-column {
+    flex: 1;
+}
 </style>
 """, unsafe_allow_html=True)
-
-# (Then continue the rest of your Python code as before...)
 
 # ---------------------------- LOAD TEXT FILES ----------------------------
 def read_docx(file):
@@ -260,6 +169,15 @@ def get_project_links(project_name):
             result[label] = match[0]
     return result
 
+def render_project_details(project_name):
+    st.markdown(f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>", unsafe_allow_html=True)
+    proj_links = get_project_links(project_name)
+    if proj_links:
+        st.markdown("<div class='link-btn'>", unsafe_allow_html=True)
+        for title, url in proj_links.items():
+            st.markdown(f"<a href='{url}' target='_blank' class='project-btn'>{title}</a>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
 # ---------------------------- SIDEBAR ----------------------------
 st.sidebar.markdown(
     "<div class='sidebar-title'>Manish Maltare<br>Portfolio</div>",
@@ -274,49 +192,36 @@ menu = st.sidebar.radio(
 # ---------------------------- PAGE ROUTING ----------------------------
 
 if menu == "About Me":
-
     st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
-
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
-
     st.write(about_text)
 
 elif menu == "Projects":
-
     st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
+
+    # Create two columns: Classification and Regression
+    st.markdown("<div class='grid-container'>", unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
-    selected_project = None
-
     with col1:
-        st.markdown("<div class='project-category'>Classification</div>", unsafe_allow_html=True)
-        st.markdown("<div class='project-button'>", unsafe_allow_html=True)
-        if st.button("NLP - Sentiment Analysis"):
-            selected_project = "NLP - Sentiment Analysis"
-        if st.button("Logistic Regression - Titanic Survival Prediction"):
-            selected_project = "Logistic Regression - Titanic Survival Prediction"
-        st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
+        if st.button("NLP - Sentiment Analysis"): selected_project = "NLP - Sentiment Analysis"
+        elif st.button("Logistic Regression - Titanic Survival Prediction"): selected_project = "Logistic Regression - Titanic Survival Prediction"
+        else: selected_project = None
 
     with col2:
-        st.markdown("<div class='project-category'>Regression</div>", unsafe_allow_html=True)
-        st.markdown("<div class='project-button'>", unsafe_allow_html=True)
-        if st.button("Solar Panel Regression"):
-            selected_project = "Solar Panel Regression"
-        if st.button("Machine Learning Insights into GDP Drivers"):
-            selected_project = "Machine Learning Insights into GDP Drivers"
-        st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
+        if st.button("Solar Panel Regression"): selected_project = "Solar Panel Regression"
+        elif st.button("Machine Learning Insights into GDP Drivers"): selected_project = "Machine Learning Insights into GDP Drivers"
+        else: selected_project = selected_project if 'selected_project' in locals() else None
 
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # Show project details below the grid
     if selected_project:
-        st.markdown(f"<div class='section-title'>About the Project: {selected_project}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='hover-card'>{extract_project_section(selected_project)}</div>", unsafe_allow_html=True)
-        proj_links = get_project_links(selected_project)
-        if proj_links:
-            st.markdown("<div class='link-btn'>", unsafe_allow_html=True)
-            for title, url in proj_links.items():
-                st.markdown(f"<a href='{url}' target='_blank'>{title}</a>", unsafe_allow_html=True)
-            st.markdown("</div>", unsafe_allow_html=True)
+        render_project_details(selected_project)
 
 elif menu == "Resume Download":
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
@@ -330,7 +235,6 @@ elif menu == "Resume Download":
 
 elif menu == "Contact Me":
     st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
-
     st.write("📧 **Email:** manishmaltare@gmail.com")
     st.write("📞 **Phone:** +91 9589945630")
     st.write("📍 **Address:** Keshavnagar, Pune")
