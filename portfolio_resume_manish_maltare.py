@@ -271,37 +271,37 @@ def render_docx_block(title, body_html, project_name=None):
         render_circle_links_fixed(project_name)
 
 def render_project_details(project_name):
-    if project_name == "NLP - Sentiment Analysis":
-        body_html = nlp_text.replace("\n", "<br>") if nlp_text else "NLP DOCX not found."
-        render_docx_block(
-            "NLP - Sentiment Analysis",
-            body_html,
-            project_name
-        )
+    if project_name == "NLP - Sentiment Analysis":
+        body_html = nlp_text.replace("\n", "<br>") if nlp_text else "NLP DOCX not found."
+        render_docx_block(
+            "NLP - Sentiment Analysis",
+            body_html,
+            project_name
+        )
 
-    elif project_name == "Logistic Regression - Titanic Survival Prediction":
-        body_html = logreg_text.replace("\n", "<br>") if logreg_text else "Logistic Regression DOCX not found."
-        render_docx_block(
-            "Logistic Regression - Titanic Survival Prediction",
-            body_html,
-            project_name
-        )
+    elif project_name == "Logistic Regression - Titanic Survival Prediction":
+        body_html = logreg_text.replace("\n", "<br>") if logreg_text else "Logistic Regression DOCX not found."
+        render_docx_block(
+            "Logistic Regression - Titanic Survival Prediction",
+            body_html,
+            project_name
+        )
 
-    elif project_name == "Solar Panel Regression":
-        body_html = solar_text.replace("\n", "<br>") if solar_text else "Solar Panel Regression DOCX not found."
-        render_docx_block(
-            "Solar Panel Regression",
-            body_html,
-            project_name
-        )
+    elif project_name == "Solar Panel Regression":
+        body_html = solar_text.replace("\n", "<br>") if solar_text else "Solar Panel Regression DOCX not found."
+        render_docx_block(
+            "Solar Panel Regression",
+            body_html,
+            project_name
+        )
 
-    elif project_name == "Machine Learning Insights into GDP Drivers":
-        body_html = ml_insights_text.replace("\n", "<br>") if ml_insights_text else "Machine Learning Insights DOCX not found."
-        render_docx_block(
-            "Machine Learning Insights into GDP Drivers",
-            body_html,
-            project_name
-        )
+    elif project_name == "Machine Learning Insights into GDP Drivers":
+        body_html = ml_insights_text.replace("\n", "<br>") if ml_insights_text else "Machine Learning Insights DOCX not found."
+        render_docx_block(
+            "Machine Learning Insights into GDP Drivers",
+            body_html,
+            project_name
+        )
 
 # ---------------------------- SIDEBAR ----------------------------
 st.sidebar.markdown(
