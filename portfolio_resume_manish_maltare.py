@@ -47,21 +47,6 @@ st.markdown("""
     color: #000 !important;
 }
 
-/* Download button styling (Resume) */
-button[data-testid="stDownloadButton"] {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 6px !important;
-    font-weight: 600 !important;
-    padding: 8px 12px !important;
-    transition: 0.3s;
-}
-button[data-testid="stDownloadButton"]:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: black !important;
-}
-
 /* Top navigation ribbon */
 .top-nav {
     width:100%;
@@ -88,31 +73,30 @@ button[data-testid="stDownloadButton"]:hover {
     color:#FFD700;
 }
 
+/* Digital Portfolio text below top nav */
+.digital-portfolio {
+    margin-top: 70px; /* space from fixed top nav */
+    text-align: center;
+    font-weight: 900;
+    font-size: 28px;
+    color: white;
+}
+
+/* Sidebar footer text */
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
 /* Main content container padding */
 .block-container {
-    padding-top:140px !important; /* to avoid overlapping nav */
+    padding-top:90px !important; /* to avoid overlapping nav */
     padding-left:150px !important;
     padding-right:150px !important;
     color: white !important;
-}
-
-/* Digital Portfolio text below nav */
-.top-nav-text {
-    text-align:center;
-    margin-top:10px;
-    margin-bottom:20px;
-}
-.top-nav-text h2 {
-    margin:0;
-    font-size:24px;
-    font-weight:800;
-    color:#FFD700;
-}
-.top-nav-text h3 {
-    margin:0;
-    font-size:20px;
-    font-weight:700;
-    color:#FFFECB;
 }
 
 /* Titles */
@@ -158,6 +142,19 @@ button[data-testid="stDownloadButton"]:hover {
 .grid-column {
     flex: 1;
 }
+
+/* Style the resume download button same as project buttons */
+button[kind="primary"] {
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-radius:6px !important;
+    font-weight:600 !important;
+}
+
+button[kind="primary"]:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+    color: black !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -169,12 +166,10 @@ st.markdown("""
     <a href="#resume">Resume Download</a>
     <a href="#contact">Contact Me</a>
 </div>
-
-<div class="top-nav-text">
-    <h2>Digital Portfolio</h2>
-    <h3>Manish Maltare</h3>
-</div>
 """, unsafe_allow_html=True)
+
+# ---------------------------- DIGITAL PORTFOLIO TEXT ----------------------------
+st.markdown('<div class="digital-portfolio">Digital Portfolio / Manish Maltare</div>', unsafe_allow_html=True)
 
 # ---------------------------- LOAD TEXT FILES ----------------------------
 def read_docx(file):
@@ -227,7 +222,16 @@ def render_project_details(project_name):
         for title, url in proj_links.items():
             st.markdown(f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>", unsafe_allow_html=True)
 
-# ---------------------------- SIDEBAR (Hidden) ----------------------------
+# ---------------------------- SIDEBAR ----------------------------
+st.sidebar.markdown(
+    """
+    <div class="sidebar-footer">
+        Digital Portfolio<br>
+        Manish Maltare
+    </div>
+    """, unsafe_allow_html=True
+)
+
 menu = st.sidebar.radio(
     "Navigation",
     ["About Me", "Projects", "Resume Download", "Contact Me"]
@@ -247,7 +251,6 @@ elif menu == "Projects":
 
     selected_project = st.session_state.get("selected_project", None)
 
-    # Grid columns
     col1, col2 = st.columns(2)
 
     with col1:
@@ -262,7 +265,6 @@ elif menu == "Projects":
 
     st.session_state["selected_project"] = selected_project
 
-    # Show project details
     if selected_project:
         render_project_details(selected_project)
 
@@ -274,7 +276,8 @@ elif menu == "Resume Download":
             label="📄 Download Resume (PDF)",
             data=f,
             file_name="Manish_Maltare_Resume.pdf",
-            mime="application/pdf"
+            mime="application/pdf",
+            key="resume_button"
         )
 
 elif menu == "Contact Me":
