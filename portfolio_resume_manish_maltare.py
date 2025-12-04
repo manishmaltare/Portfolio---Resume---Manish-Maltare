@@ -40,51 +40,103 @@ body {
     100% { opacity: 1; transform: translateY(0px) scale(1); }
 }
 
-/* -------------------- SIDEBAR GLOBAL -------------------- */
-div[data-testid="stSidebar"] {
-    background: linear-gradient(to bottom, #000000, #111111, #1a1a1a);
+/* ---------------------- SIDEBAR ---------------------- */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #000000 0%, #111111 50%, #1A1A1A 100%);
+    padding: 30px 20px;
 }
 
-/* Sidebar Title (Manish Maltare – Portfolio) */
-div[data-testid="stSidebar"] h1, 
-div[data-testid="stSidebar"] h2, 
-div[data-testid="stSidebar"] h3, 
-div[data-testid="stSidebar"] p {
-    color: #FFFFFF !important;
-    font-weight: 700 !important;
+/* SIDEBAR TITLE (TWO-LINE HEADING) */
+.sidebar-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    text-align: left;
+    line-height: 1.1;
+    margin-bottom: 40px;
 }
 
-/* -------------------- NAVIGATION ITEMS -------------------- */
-
-/* Make radio labels vibrant yellow */
-.st-emotion-cache-16jpqyg, .st-emotion-cache-16jpqyg * {
-    color: #FFD300 !important;
-    font-weight: 600 !important;
+/* NAV ITEMS (PURE WHITE) */
+div[data-testid="stSidebar"] * {
+    color: white !important;
 }
 
-/* New Streamlit radio label class */
-.st-emotion-cache-1jt5y2c, .st-emotion-cache-1jt5y2c * {
-    color: #FFD300 !important;
-    font-weight: 600 !important;
+.st-emotion-cache-1v0mbdj {
+    background-color: transparent !important;
+    padding: 8px !important;
+}
+.st-emotion-cache-1v0mbdj:hover {
+    background-color: #2A2A2A !important;
 }
 
-/* Radio button circle (unselected) */
-.stRadio > label > div[role="radiogroup"] > label div:first-child {
-    border: 2px solid #FFD300 !important;
+/* ---------------------- TITLES ---------------------- */
+
+.main-title {
+    font-size: 55px;
+    font-weight: 900;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: -10px;
 }
 
-/* Selected circle filled with yellow */
-.stRadio > label > div[role="radiogroup"] > label[data-selected="true"] div:first-child {
-    background-color: #FFD300 !important;
-    border: 2px solid #FFD300 !important;
+.sub-title-tagline {
+    font-size: 28px;
+    font-weight: 600;
+    color: #555;
+    text-align: center;
+    margin-bottom: 45px;
 }
 
-/* Hover effect */
-.st-emotion-cache-16jpqyg:hover,
-.st-emotion-cache-1jt5y2c:hover {
-    color: #FFE766 !important;
-    text-shadow: 0px 0px 8px rgba(255, 211, 0, 0.6);
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
+
+/* PROJECT TITLE */
+.project-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: black;
+    margin-top: 30px;
+}
+
+/* CONTENT CARD WITH HOVER EFFECT */
+.hover-card {
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #F8F8F8;
+    border: 1px solid #E0E0E0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+}
+
+/* BUTTON LINKS */
+.link-btn a {
+    padding: 8px 15px;
+    margin-right: 10px;
+    background-color: black;
+    color: white !important;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    border: 1px solid white;
+    transition: 0.3s;
+}
+.link-btn a:hover {
+    background-color: white;
+    color: black !important;
+    border-color: black;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ---------------------------- LOAD TEXT FILES ----------------------------
 def read_docx(file):
