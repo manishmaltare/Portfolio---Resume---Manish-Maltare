@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Portfolio Resume - Manish Maltare | Animated Black & White Theme"""
+"""Portfolio Resume - Manish Maltare | Nested Projects, Black & White Theme"""
 
 import streamlit as st
 import docx
@@ -14,7 +14,6 @@ st.set_page_config(
 # ---------------------------- CUSTOM CSS ----------------------------
 st.markdown("""
 <style>
-
 @import url('https://fonts.cdnfonts.com/css/copperplate-gothic');
 
 /* GLOBAL FONT */
@@ -22,89 +21,56 @@ st.markdown("""
     font-family: 'Copperplate Gothic', sans-serif !important;
 }
 
-/* PAGE BACKGROUND */
-body, [data-testid="stAppViewContainer"] {
+/* MAIN BACKGROUND */
+body, .block-container, [data-testid="stAppViewContainer"] {
     background-color: #000000 !important;
 }
 
-/* CONTENT AREA */
+/* MAIN CONTENT WIDTH */
 .block-container {
-    padding-left: 180px !important;
-    padding-right: 180px !important;
-    background-color: #000000 !important;
-    animation: fadeSlide 0.7s ease-in-out;
+    padding-left: 150px !important;
+    padding-right: 150px !important;
+    animation: fadeSlideZoom 0.7s ease-in-out;
 }
 
 /* ANIMATION */
-@keyframes fadeSlide {
-    0% { opacity: 0; transform: translateY(25px); }
-    100% { opacity: 1; transform: translateY(0px); }
+@keyframes fadeSlideZoom {
+    0% { opacity: 0; transform: translateY(25px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0px) scale(1); }
 }
 
-/* ---------------------- SIDEBAR ---------------------- */
-
-/* Narrower sidebar width (default is ~300px, here ~220px) */
-.css-1d391kg {
-    width: 220px !important;
-}
-
-/* Sidebar background: Light grey */
+/* SIDEBAR - LIGHT GREY */
 section[data-testid="stSidebar"] {
-    background-color: #F0F0F0 !important;  /* light grey */
-    padding: 25px 20px;
-    overflow-y: hidden;  /* Hide scrollbar */
+    background-color: #D3D3D3 !important;
+    padding: 20px 15px;
 }
 
-/* Remove vertical scrollbar from sidebar */
-section[data-testid="stSidebar"]::-webkit-scrollbar {
-    display: none;
-}
-
-/* Sidebar title */
+/* SIDEBAR TITLE */
 .sidebar-title {
     font-size: 28px;
     font-weight: 800;
     color: #000000 !important;
+    text-align: left;
     line-height: 1.1;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-/* ---------------------- FIX NAVIGATION COLOR ---------------------- */
-
-/* Radio label text (Streamlit 2024-25 classes) */
-.st-emotion-cache-6qob1r, 
-.st-emotion-cache-6qob1r *,
-.st-emotion-cache-1p3kisu,
-.st-emotion-cache-1p3kisu * {
-    color: #FFD300 !important;
+/* NAV ITEMS */
+div[data-testid="stSidebar"] label,
+div[data-testid="stSidebar"] span,
+div[data-testid="stSidebar"] .stRadio > label > div {
+    color: #000000 !important;
     font-weight: 600 !important;
 }
 
-/* Radio circles */
-.stRadio > label > div[role="radiogroup"] > label div:first-child {
-    border: 2px solid #FFD300 !important;
-}
-
-/* Selected radio circle */
-.stRadio > label > div[role="radiogroup"] > label[data-selected="true"] div:first-child {
-    background-color: #FFD300 !important;
-    border: 2px solid #FFD300 !important;
-}
-
-/* Hover effect */
-.st-emotion-cache-6qob1r:hover,
-.st-emotion-cache-1p3kisu:hover {
-    color: #FFE766 !important;
-}
-
-/* ---------------------- MAIN TITLES ---------------------- */
-
+/* MAIN TITLES */
 .main-title {
     font-size: 55px;
     font-weight: 900;
     color: #FFFFFF;
     text-align: center;
     margin-top: 10px;
+    margin-bottom: -10px;
 }
 
 .sub-title-tagline {
@@ -138,14 +104,15 @@ section[data-testid="stSidebar"]::-webkit-scrollbar {
     background-color: #1A1A1A;
     border: 1px solid #333333;
     color: #E8E8E8;
-    transition: 0.25s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .hover-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0px 4px 15px rgba(255,255,255,0.2);
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+    background-color: #252525;
 }
 
-/* LINKS */
+/* BUTTON LINKS */
 .link-btn a {
     padding: 8px 15px;
     margin-right: 10px;
@@ -153,24 +120,24 @@ section[data-testid="stSidebar"]::-webkit-scrollbar {
     color: black !important;
     border-radius: 6px;
     text-decoration: none;
+    font-size: 15px;
     border: 1px solid white;
     transition: 0.3s;
 }
 .link-btn a:hover {
-    background-color: black;
+    background-color: #000000;
     color: white !important;
     border-color: white;
 }
 
-/* BODY TEXT WHITE */
+/* TEXT COLOR - WHITE */
 .stMarkdown, .stWrite, .stText {
     color: #E8E8E8 !important;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------- LOAD TEXT FILES ----------------------------
+# ---------------------------- LOAD DOCX ----------------------------
 def read_docx(file):
     doc = docx.Document(file)
     return "\n".join([para.text for para in doc.paragraphs])
@@ -237,21 +204,35 @@ menu = st.sidebar.radio(
 
 # ---------------------------- PAGE ROUTING ----------------------------
 
+# ABOUT ME PAGE
 if menu == "About Me":
-
     st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
     st.write(about_text)
 
+# PROJECTS PAGE WITH SUBCATEGORIES
 elif menu == "Projects":
     st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
 
-    render_project("SOLAR PANEL REGRESSION")
-    render_project("NLP  - Sentiment Analysis")
-    render_project("Machine Learning Insights into GDP Drivers")
-    render_project("Logistic Regression - Titanic Survival Prediction")
+    # Select Regression or Classification
+    project_type = st.selectbox("Select Project Type", ["Regression", "Classification"])
 
+    if project_type == "Regression":
+        regression_project = st.selectbox(
+            "Select Regression Project",
+            ["Solar Panel Regression", "Machine Learning Insights into GDP Drivers"]
+        )
+        render_project(regression_project)
+
+    elif project_type == "Classification":
+        classification_project = st.selectbox(
+            "Select Classification Project",
+            ["NLP - Sentiment Analysis", "Logistic Regression - Titanic Survival Prediction"]
+        )
+        render_project(classification_project)
+
+# RESUME PAGE
 elif menu == "Resume Download":
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
     with open("Resume - Manish Maltare - final.pdf", "rb") as f:
@@ -262,9 +243,9 @@ elif menu == "Resume Download":
             mime="application/pdf"
         )
 
+# CONTACT PAGE
 elif menu == "Contact Me":
     st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
-
     st.write("📧 **Email:** manishmaltare@gmail.com")
     st.write("📞 **Phone:** +91 9589945630")
     st.write("📍 **Address:** Keshavnagar, Pune")
