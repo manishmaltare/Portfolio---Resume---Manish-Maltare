@@ -14,6 +14,37 @@ st.set_page_config(
 # ---------------------------- CUSTOM CSS ----------------------------
 st.markdown("""
 <style>
+/* FIX STREAMLIT RADIO LABEL COLOR */
+.st-emotion-cache-1p3kisu, 
+.st-emotion-cache-1p3kisu * {
+    color: #FFD300 !important;
+    font-weight: 600 !important;
+}
+
+/* NEW Radio label class (Streamlit 2024 update) */
+.st-emotion-cache-6qob1r, 
+.st-emotion-cache-6qob1r * {
+    color: #FFD300 !important;
+    font-weight: 600 !important;
+}
+
+/* Selected radio button circle */
+.stRadio > label > div[role="radiogroup"] > label[data-selected="true"] div:first-child {
+    background-color: #FFD300 !important;
+    border: 2px solid #FFD300 !important;
+}
+
+/* Unselected circles */
+.stRadio > label > div[role="radiogroup"] > label div:first-child {
+    border: 2px solid #FFD300 !important;
+}
+
+/* Hover highlight */
+.st-emotion-cache-1p3kisu:hover,
+.st-emotion-cache-6qob1r:hover {
+    color: #FFE45C !important;
+    text-shadow: 0px 0px 10px rgba(255, 211, 0, 0.5);
+}
 
 @import url('https://fonts.cdnfonts.com/css/copperplate-gothic');
 
