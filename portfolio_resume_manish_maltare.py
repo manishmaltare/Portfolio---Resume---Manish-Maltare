@@ -71,7 +71,7 @@ body {
     100% { opacity: 1; transform: translateY(0px) scale(1); }
 }
 
-/* ---------------------- SIDEBAR ---------------------- */
+# ---------------------- SIDEBAR ---------------------- */
 section[data-testid="stSidebar"] {
     background: linear-gradient(180deg, #000000 0%, #111111 50%, #1A1A1A 100%);
     padding: 30px 20px;
@@ -87,18 +87,39 @@ section[data-testid="stSidebar"] {
     margin-bottom: 40px;
 }
 
-/* NAV ITEMS (PURE WHITE) */
-div[data-testid="stSidebar"] * {
-    color: white !important;
+/* NAV ITEMS - MAKE TEXT YELLOW/WHITE */
+div[data-testid="stSidebar"] label,
+div[data-testid="stSidebar"] span {
+    color: #FFD700 !important;  /* Yellow */
+    font-weight: 600 !important;
 }
 
-.st-emotion-cache-1v0mbdj {
-    background-color: transparent !important;
-    padding: 8px !important;
+/* RADIO BUTTON OPTIONS (Navigation Items) */
+div[data-testid="stSidebar"] .st-radio > label > div {
+    color: #FFD700 !important;
 }
-.st-emotion-cache-1v0mbdj:hover {
-    background-color: #2A2A2A !important;
+
+/* RADIO BUTTON TEXT */
+div[data-testid="stSidebar"] .st-radio label span {
+    color: #FFD700 !important;
+    font-size: 16px !important;
 }
+
+/* ALL TEXT IN SIDEBAR */
+div[data-testid="stSidebar"] * {
+    color: #FFD700 !important;
+}
+
+/* RADIO BUTTON HOVER */
+div[data-testid="stSidebar"] .st-radio:hover {
+    background-color: rgba(255, 215, 0, 0.1) !important;
+}
+
+/* SELECTED RADIO BUTTON */
+div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {
+    color: #FFFFFF !important;
+}
+
 
 /* ---------------------- TITLES ---------------------- */
 
