@@ -22,30 +22,17 @@ st.markdown("""
     font-family: 'Copperplate Gothic', sans-serif !important;
 }
 
-/* PAGE BACKGROUND - BLACK */
-body {
+/* PAGE BACKGROUND */
+body, [data-testid="stAppViewContainer"] {
     background-color: #000000 !important;
 }
 
-/* ... rest of your CSS ... */
-
-</style>
-""", unsafe_allow_html=True)
-/* CONTAINER WIDTH (NARROW CENTERED LOOK) */
+/* CENTER CONTENT AREA */
 .block-container {
     padding-left: 180px !important;
     padding-right: 180px !important;
+    background-color: #000000 !important;
     animation: fadeSlideZoom 0.7s ease-in-out;
-    background-color: #000000 !important;
-}
-
-/* MAIN CONTENT AREA - BLACK BACKGROUND */
-.main {
-    background-color: #000000 !important;
-}
-
-[data-testid="stAppViewContainer"] {
-    background-color: #000000 !important;
 }
 
 /* MIXED ANIMATION */
@@ -53,6 +40,121 @@ body {
     0% { opacity: 0; transform: translateY(25px) scale(0.96); }
     100% { opacity: 1; transform: translateY(0px) scale(1); }
 }
+
+/* ---------------------- SIDEBAR (WHITE) ---------------------- */
+section[data-testid="stSidebar"] {
+    background-color: #FFFFFF !important;
+    padding: 30px 20px;
+}
+
+/* SIDEBAR TITLE (BLACK) */
+.sidebar-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #000000 !important;
+    line-height: 1.1;
+    margin-bottom: 40px;
+}
+
+/* ---------------------- NAVIGATION TEXT FIX ---------------------- */
+
+/* Make Radio Labels Black */
+.st-emotion-cache-1p3kisu, .st-emotion-cache-1p3kisu * {
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+/* Newer Streamlit radio class */
+.st-emotion-cache-6qob1r, .st-emotion-cache-6qob1r * {
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+/* Radio Circles */
+.stRadio > label > div[role='radiogroup'] > label div:first-child {
+    border: 2px solid #000000 !important;
+}
+
+/* Selected Radio Circle */
+.stRadio > label > div[role='radiogroup'] > label[data-selected="true"] div:first-child {
+    background-color: #000000 !important;
+}
+
+/* ---------------------- MAIN TITLES (WHITE) ---------------------- */
+
+.main-title {
+    font-size: 55px;
+    font-weight: 900;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.sub-title-tagline {
+    font-size: 28px;
+    font-weight: 600;
+    color: #CCCCCC;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* PROJECT TITLE */
+.project-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 30px;
+}
+
+/* CONTENT CARD */
+.hover-card {
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #1A1A1A;
+    border: 1px solid #333333;
+    color: #E8E8E8;
+    transition: 0.25s;
+}
+
+.hover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px 15px rgba(255,255,255,0.2);
+}
+
+/* BUTTON LINKS */
+.link-btn a {
+    padding: 8px 15px;
+    margin-right: 10px;
+    background-color: white;
+    color: black !important;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid white;
+    transition: 0.3s;
+}
+
+.link-btn a:hover {
+    background-color: black;
+    color: white !important;
+    border-color: white;
+}
+
+/* TEXT COLOR INSIDE MAIN BODY */
+.stMarkdown, .stWrite, .stText {
+    color: #E8E8E8 !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 
 /* ---------------------- SIDEBAR - WHITE BACKGROUND ---------------------- */
 section[data-testid="stSidebar"] {
