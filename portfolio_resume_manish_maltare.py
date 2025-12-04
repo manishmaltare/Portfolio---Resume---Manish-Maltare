@@ -10,140 +10,175 @@ st.set_page_config(
 )
 
 # ---------------------------- CUSTOM CSS ----------------------------
+# ---------------------------- CUSTOM CSS ----------------------------
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
 
 /* GLOBAL FONT */
 * {
-    font-family: 'Open Sans', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 /* PAGE BACKGROUND IMAGE */
 [data-testid="stAppViewContainer"] {
-    background-image: url("https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/5072609.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: white !important;
+    background-image: url("https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/5072609.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white !important;
 }
 
 /* Remove default button styling */
 .stButton>button {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border: none !important;
-    padding: 8px 12px !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 .stButton>button:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: #000 !important;
+    background-color: rgba(255,255,255,0.3) !important;
+    color: #000 !important;
 }
 
 /* Top navigation ribbon */
 .top-nav {
-    width:100%;
-    background-color: rgba(0,0,0,0.5);
-    padding:15px 0px;
-    display:flex;
-    justify-content:center;
-    gap:50px;
-    position:fixed;
-    top:0;
-    z-index:100;
-    border-radius:0 0 10px 10px;
+    width:100%;
+    background-color: rgba(0,0,0,0.5);
+    padding:15px 0px;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    position:fixed;
+    top:0;
+    z-index:100;
+    border-radius:0 0 10px 10px;
 }
 
 /* Top nav links */
 .top-nav a {
-    color: #FFFECB;
-    text-decoration: none;
-    font-weight:700;
-    font-size:22px;
-    transition:0.3s;
+    color: #FFFECB;
+    text-decoration: none;
+    font-weight:700;
+    font-size:22px;
+    transition:0.3s;
 }
 .top-nav a:hover {
-    color:#FFD700;
+    color:#FFD700;
 }
 
 /* Sidebar footer text */
 .sidebar-footer {
-    position: absolute;
-    bottom: 20px;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
 }
 
 /* Main content container padding */
 .block-container {
-    padding-top:90px !important;
-    padding-left:150px !important;
-    padding-right:150px !important;
-    color: white !important;
+    padding-top:90px !important;
+    padding-left:150px !important;
+    padding-right:150px !important;
+    color: white !important;
 }
 
 /* Titles */
 .main-title {
-    font-size: 55px;
-    font-weight: 900;
-    color: white;
-    text-align: center;
-    margin-top: 10px;
+    font-size: 55px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .sub-title-tagline {
-    font-size: 28px;
-    color: white;
-    text-align: center;
-    margin-bottom: 40px;
+    font-size: 28px;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .section-title {
-    font-size: 32px;
-    color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Project details card */
 .hover-card {
-    padding: 15px;
-    border-radius: 10px;
-    background-color: rgba(0,0,0,0.6);
-    color: white;
-    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    margin-top: 20px;
 }
 .hover-card h3 {
-    margin-top: 0;
+    margin-top: 0;
 }
 
 /* Grid layout */
 .grid-container {
-    display: flex;
-    gap: 50px;
+    display: flex;
+    gap: 50px;
 }
 .grid-column {
-    flex: 1;
+    flex: 1;
 }
 
 /* Make resume button transparent */
 div[data-testid="stDownloadButton"] button {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border-radius:6px !important;
-    font-weight:600 !important;
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-radius:6px !important;
+    font-weight:600 !important;
 }
 div[data-testid="stDownloadButton"] button:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: black !important;
+    background-color: rgba(255,255,255,0.3) !important;
+    color: black !important;
 }
 
+/* ------------------ CIRCULAR ICON BUTTONS ------------------ */
+.circle-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+/* UPDATED BACKGROUND HERE */
+.circle-icon {
+    width: 120px;
+    height: 120px;
+    **background: rgba(0,0,0,0.7);** /* Semi-transparent black background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    transition: 0.3s;
+    border: 2px solid rgba(255,255,255,0.4);
+    padding: 10px;
+}
+.circle-icon:hover {
+    **background: rgba(0,0,0,0.85);** /* Slightly less transparent black on hover */
+    color: white; /* Keep text white for contrast */
+    transform: scale(1.08);
+    border-color: white;
+}
+</style>
+""", unsafe_allow_html=True)
 /* ------------------ CIRCULAR ICON BUTTONS ------------------ */
 .circle-container {
     display: flex;
