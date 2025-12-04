@@ -209,4 +209,23 @@ links = load_links()
 
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
 def extract_project_section(project_name):
-    pattern = rf"{project_name}(.*?)(?=[A-Z ]{{3
+    # Match text after project_name until next all‑caps heading (3+ chars) or end of string
+    pattern = rf"{project_name}(.*?)(?=[A-Z ]{{3,}}|$)"
+    match = re.search(pattern, projects_text, re.S)
+    return match.group(1).strip() if match else ""
+
+def get_project_links(project_name):
+    result = {}
+    mapping = {
+        "ppt": "PPT",
+        "github_files": "GitHub Files",
+        "github_deploy": "GitHub Deployment Files",
+        "app_links": "App Link",
+        "youtube": "YouTube Video"
+    }
+    for key, label in mapping.items():
+        block = links.get(key, [""])[0]
+        match = re.findall(rf"{project_name}.*?:\s*(https?://\S+)", block)
+        if match:
+            result[label] = match[0]
+    return result
