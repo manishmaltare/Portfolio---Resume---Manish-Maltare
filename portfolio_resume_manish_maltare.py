@@ -206,52 +206,52 @@ ml_insights_text = read_docx_safe("Machine learning insights.docx")
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
 
 def render_circle_links_fixed(project_name):
-    links_map = {
-        "NLP - Sentiment Analysis": {
-            "Presentation": "https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view?usp=sharing",
-            "GitHub - Script": "https://github.com/manishmaltare/NLP---Sentiment-Analysis",
-            "GitHub - Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment%20-%20Sentiment%20Analysis%20-%20Group%201.py",
-            "App Link": "https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/",
-        },
-        "Logistic Regression - Titanic Survival Prediction": {
-            "Presentation": "https://drive.google.com/file/d/your-logreg-ppt-link/view?usp=sharing",
-            "GitHub - Script": "https://github.com/manishmaltare/Manish-Maltare/blob/main/RESUME/LogisticRegressionAssignment.ipynb",
-            "GitHub - Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/pickleofassignmentlogisticregressiondeploymentfinal.py",
-            "App Link": "https://manish-maltare-8pw78deodbfyqewds8uere.streamlit.app/",
-        },
-        "Solar Panel Regression": {
-            "Presentation": "https://drive.google.com/file/d/1unMOirI9oFjn2lKJH97sVE4985Gp0mea/view?usp=sharing",
-            "GitHub - Script": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
-            "GitHub - Deployment": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
-            "App Link": "https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/",
-        },
-        "Machine Learning Insights into GDP Drivers": {
-            "Presentation": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LMR5775P1T/view?usp=sharing",
-            "GitHub - Script": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
-            "GitHub - Deployment": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
-            "YouTube Video": "https://youtu.be/y6vTDqyEPdw?si=9x0Zb8B-2KPosX0R",
-        },
-    }
+    links_map = {
+        "NLP - Sentiment Analysis": {
+            "Presentation": "https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view?usp=sharing",
+            "GitHub - Script": "https://github.com/manishmaltare/NLP---Sentiment-Analysis",
+            "GitHub - Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment%20-%20Sentiment%20Analysis%20-%20Group%201.py",
+            "App Link": "https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/",
+        },
+        "Logistic Regression - Titanic Survival Prediction": {
+            "Presentation": "https://drive.google.com/file/d/your-logreg-ppt-link/view?usp=sharing",
+            "GitHub - Script": "https://github.com/manishmaltare/Manish-Maltare/blob/main/RESUME/LogisticRegressionAssignment.ipynb",
+            "GitHub - Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/pickleofassignmentlogisticregressiondeploymentfinal.py",
+            "App Link": "https://manish-maltare-8pw78deodbfyqewds8uere.streamlit.app/",
+        },
+        "Solar Panel Regression": {
+            "Presentation": "https://drive.google.com/file/d/1unMOirI9oFjn2lKJH97sVE4985Gp0mea/view?usp=sharing",
+            "GitHub - Script": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
+            "GitHub - Deployment": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
+            "App Link": "https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/",
+        },
+        "Machine Learning Insights into GDP Drivers": {
+            "Presentation": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LMR5775P1T/view?usp=sharing",
+            "GitHub - Script": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
+            "GitHub - Deployment": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
+            "YouTube Video": "https://youtu.be/y6vTDqyEPdw?si=9x0Zb8B-2KPosX0R",
+        },
+    }
 
-    proj_links = links_map.get(project_name, {})
-    if not proj_links:
-        return
+    proj_links = links_map.get(project_name, {})
+    if not proj_links:
+        return
 
-    # GENERATE HTML LINKS WITHOUT EXTRA NEWLINES/INDENTATION
-    link_html_list = []
-    for label, url in proj_links.items():
-        # Create a single line of HTML for each link to prevent Markdown code block interpretation
-        link_html = (
-            f'<a href="{url}" target="_blank">'
-            f'<div class="circle-icon">{label}</div>'
-            f'</a>'
-        )
-        link_html_list.append(link_html)
-    
-    # Join all links and wrap in the container
-    html = f'<div class="circle-container">{" ".join(link_html_list)}</div>'
+    # GENERATE HTML LINKS WITHOUT EXTRA NEWLINES/INDENTATION
+    link_html_list = []
+    for label, url in proj_links.items():
+        # Create a single line of HTML for each link to prevent Markdown code block interpretation
+        link_html = (
+            f'<a href="{url}" target="_blank">'
+            f'<div class="circle-icon">{label}</div>'
+            f'</a>'
+        )
+        link_html_list.append(link_html)
+    
+    # Join all links and wrap in the container
+    html = f'<div class="circle-container">{" ".join(link_html_list)}</div>'
 
-    st.markdown(html, unsafe_allow_html=True)
+    st.markdown(html, unsafe_allow_html=True)
 
 
 def render_docx_block(title, body_html, project_name=None):
