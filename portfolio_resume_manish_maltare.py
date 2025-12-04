@@ -134,15 +134,25 @@ st.markdown("""
     flex: 1;
 }
 
-/* Style the resume download button same as project buttons */
+/* Style all primary buttons like project buttons (light transparent) */
 button[kind="primary"] {
     background-color: rgba(255,255,255,0.1) !important;
     color: white !important;
     border-radius:6px !important;
     font-weight:600 !important;
 }
-
 button[kind="primary"]:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+    color: black !important;
+}
+
+/* Make the specific resume download button semi‑transparent with border */
+button[kind="primary"][data-baseweb="button"][id^="resume_button"] {
+    background-color: rgba(255,255,255,0.12) !important;
+    border: 1px solid rgba(255,255,255,0.4) !important;
+    color: white !important;
+}
+button[kind="primary"][data-baseweb="button"][id^="resume_button"]:hover {
     background-color: rgba(255,255,255,0.3) !important;
     color: black !important;
 }
@@ -204,11 +214,17 @@ def get_project_links(project_name):
     return result
 
 def render_project_details(project_name):
-    st.markdown(f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>",
+        unsafe_allow_html=True
+    )
     proj_links = get_project_links(project_name)
     if proj_links:
         for title, url in proj_links.items():
-            st.markdown(f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>", unsafe_allow_html=True)
+            st.markdown(
+                f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>",
+                unsafe_allow_html=True
+            )
 
 # ---------------------------- SIDEBAR ----------------------------
 st.sidebar.markdown(
@@ -217,7 +233,8 @@ st.sidebar.markdown(
         Digital Portfolio<br>
         Manish Maltare
     </div>
-    """, unsafe_allow_html=True
+    """,
+    unsafe_allow_html=True
 )
 
 menu = st.sidebar.radio(
@@ -243,16 +260,16 @@ elif menu == "Projects":
 
     with col1:
         st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
-        if st.button("NLP - Sentiment Analysis"): 
+        if st.button("NLP - Sentiment Analysis"):
             st.session_state["selected_project"] = "NLP - Sentiment Analysis"
-        if st.button("Logistic Regression - Titanic Survival Prediction"): 
+        if st.button("Logistic Regression - Titanic Survival Prediction"):
             st.session_state["selected_project"] = "Logistic Regression - Titanic Survival Prediction"
 
     with col2:
         st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
-        if st.button("Solar Panel Regression"): 
+        if st.button("Solar Panel Regression"):
             st.session_state["selected_project"] = "Solar Panel Regression"
-        if st.button("Machine Learning Insights into GDP Drivers"): 
+        if st.button("Machine Learning Insights into GDP Drivers"):
             st.session_state["selected_project"] = "Machine Learning Insights into GDP Drivers"
 
     if st.session_state.get("selected_project"):
