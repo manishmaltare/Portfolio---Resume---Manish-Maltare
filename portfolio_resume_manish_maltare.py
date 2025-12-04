@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Manish Maltare - Portfolio with Top Transparent Navigation Ribbon"""
+"""Manish Maltare - Portfolio with Top Transparent Navigation Ribbon (Text Only)"""
 
 import streamlit as st
 import docx
@@ -33,7 +33,7 @@ st.markdown("""
 /* TOP NAV BAR */
 .top-nav {
     width: 100%;
-    background-color: rgba(0,0,0,0.5); /* semi-transparent */
+    background-color: rgba(0,0,0,0.5); /* semi-transparent background */
     padding: 10px 20px;
     display: flex;
     justify-content: center;
@@ -43,20 +43,21 @@ st.markdown("""
     z-index: 100;
     border-radius: 0 0 10px 10px;
 }
+
+/* Text-only navigation links */
 .top-nav button {
-    background-color: rgba(255,255,255,0.2); /* semi-transparent button */
+    background-color: transparent; /* remove background box */
     border: none;
-    color: #FFFECB;
+    color: #FFFECB; /* turquoise */
     font-size: 18px;
     font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 8px;
+    padding: 8px 12px;
     cursor: pointer;
     transition: 0.3s;
 }
 .top-nav button:hover {
-    background-color: rgba(255,255,255,0.4);
-    color: black;
+    color: #FFD700; /* gold on hover */
+    text-decoration: underline;
 }
 
 /* MAIN CONTENT AREA */
@@ -185,7 +186,7 @@ def render_project_details(project_name):
             st.markdown(f"<a href='{url}' target='_blank' class='project-btn'>{title}</a>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
-# ---------------------------- TOP NAVIGATION ----------------------------
+# ---------------------------- TOP NAVIGATION (TEXT ONLY) ----------------------------
 col1, col2, col3, col4 = st.columns([1,1,1,1])
 with col1:
     if st.button("About Me"):
