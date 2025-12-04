@@ -73,6 +73,15 @@ st.markdown("""
     color:#FFD700;
 }
 
+/* Sidebar footer text */
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
 /* Main content container padding */
 .block-container {
     padding-top:90px !important; /* to avoid overlapping nav */
@@ -188,7 +197,16 @@ def render_project_details(project_name):
         for title, url in proj_links.items():
             st.markdown(f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>", unsafe_allow_html=True)
 
-# ---------------------------- SIDEBAR (Hidden) ----------------------------
+# ---------------------------- SIDEBAR ----------------------------
+st.sidebar.markdown(
+    """
+    <div class="sidebar-footer">
+        Digital Portfolio<br>
+        Manish Maltare
+    </div>
+    """, unsafe_allow_html=True
+)
+
 menu = st.sidebar.radio(
     "Navigation",
     ["About Me", "Projects", "Resume Download", "Contact Me"]
@@ -208,7 +226,6 @@ elif menu == "Projects":
 
     selected_project = st.session_state.get("selected_project", None)
 
-    # Grid columns
     col1, col2 = st.columns(2)
 
     with col1:
@@ -223,7 +240,6 @@ elif menu == "Projects":
 
     st.session_state["selected_project"] = selected_project
 
-    # Show project details
     if selected_project:
         render_project_details(selected_project)
 
@@ -235,8 +251,24 @@ elif menu == "Resume Download":
             label="📄 Download Resume (PDF)",
             data=f,
             file_name="Manish_Maltare_Resume.pdf",
-            mime="application/pdf"
+            mime="application/pdf",
+            key="resume_button"
         )
+    # Change the download button background to match project buttons
+    st.markdown("""
+    <style>
+    button[kind="primary"] {
+        background-color: rgba(255,255,255,0.1) !important;
+        color: white !important;
+        border-radius:6px !important;
+        font-weight:600 !important;
+    }
+    button[kind="primary"]:hover {
+        background-color: rgba(255,255,255,0.3) !important;
+        color: black !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 elif menu == "Contact Me":
     st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
