@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Manish Maltare - Portfolio with Text-Only Buttons and Top Transparent Navigation"""
+"""Manish Maltare - Portfolio with Top Ribbon and Transparent Text Links"""
 
 import streamlit as st
 import docx
@@ -30,41 +30,48 @@ st.markdown("""
     color: white !important;
 }
 
-/* TOP NAV BAR */
-.top-nav {
-    width: 100%;
-    background-color: rgba(0,0,0,0.5); /* semi-transparent background */
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    border-radius: 0 0 10px 10px;
-}
-
-/* Text-only navigation links */
-.top-nav button {
-    background-color: transparent; /* remove background */
-    border: none;
-    color: #FFFECB; /* turquoise */
-    font-size: 18px;
-    font-weight: 600;
-    padding: 8px 12px;
+/* Remove default button styling */
+.stButton>button {
+    background-color: transparent !important;
+    color: white !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
     cursor: pointer;
-    transition: 0.3s;
-}
-.top-nav button:hover {
-    color: #FFD700; /* gold on hover */
-    text-decoration: underline;
 }
 
-/* MAIN CONTENT AREA */
+/* Top navigation ribbon */
+.top-nav {
+    width:100%;
+    background-color: rgba(0,0,0,0.5);
+    padding:10px 20px;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    position:fixed;
+    top:0;
+    z-index:100;
+    border-radius:0 0 10px 10px;
+}
+
+/* Top nav links */
+.top-nav a {
+    color: #FFFECB;
+    text-decoration: none;
+    font-weight:600;
+    font-size:18px;
+    transition:0.3s;
+}
+.top-nav a:hover {
+    color:#FFD700;
+}
+
+/* Main content container padding */
 .block-container {
-    padding-top: 80px !important; /* leave space for fixed nav bar */
-    padding-left: 50px !important;
-    padding-right: 50px !important;
+    padding-top:80px !important;
+    padding-left:150px !important;
+    padding-right:150px !important;
     color: white !important;
 }
 
@@ -74,7 +81,7 @@ st.markdown("""
     font-weight: 900;
     color: white;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .sub-title-tagline {
@@ -91,22 +98,18 @@ st.markdown("""
     margin-bottom: 20px;
 }
 
-/* Project buttons - now text only */
-.project-btn {
-    background-color: transparent !important;
+/* Project text links */
+.project-link {
     color: #FFFECB;
-    border: none !important;
-    font-size: 16px;
+    text-decoration: none;
     font-weight: 600;
-    padding: 5px 0;
-    text-align: left;
-    width: 100%;
-    cursor: pointer;
+    font-size: 16px;
+    display:block;
+    margin-bottom: 12px;
     transition: 0.3s;
 }
-.project-btn:hover {
+.project-link:hover {
     color: #FFD700;
-    text-decoration: underline;
 }
 
 /* Project details card */
@@ -181,59 +184,62 @@ def render_project_details(project_name):
     proj_links = get_project_links(project_name)
     if proj_links:
         for title, url in proj_links.items():
-            st.markdown(f"<button class='project-btn' onclick=\"window.open('{url}','_blank')\">{title}</button>", unsafe_allow_html=True)
+            st.markdown(f"<a href='{url}' target='_blank' class='project-link'>{title}</a>", unsafe_allow_html=True)
 
-# ---------------------------- TOP NAVIGATION (TEXT ONLY) ----------------------------
-col1, col2, col3, col4 = st.columns([1,1,1,1])
-with col1:
-    if st.button("About Me"):
-        st.session_state.menu = "About Me"
-with col2:
-    if st.button("Projects"):
-        st.session_state.menu = "Projects"
-with col3:
-    if st.button("Resume Download"):
-        st.session_state.menu = "Resume Download"
-with col4:
-    if st.button("Contact Me"):
-        st.session_state.menu = "Contact Me"
-
-if 'menu' not in st.session_state:
-    st.session_state.menu = "About Me"
-
-menu = st.session_state.menu
+# ---------------------------- TOP NAVIGATION ----------------------------
+st.markdown("""
+<div class="top-nav">
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume Download</a>
+    <a href="#contact">Contact Me</a>
+</div>
+""", unsafe_allow_html=True)
 
 # ---------------------------- PAGE ROUTING ----------------------------
-if menu == "About Me":
+section = st.sidebar.radio("Navigation (hidden for UI, used internally)", ["About Me", "Projects", "Resume Download", "Contact Me"], index=0, format_func=lambda x: "")
+
+# ---------------------------- ABOUT ME ----------------------------
+if section == "About Me":
+    st.markdown('<a id="about"></a>', unsafe_allow_html=True)
     st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
     st.write(about_text)
 
-elif menu == "Projects":
+# ---------------------------- PROJECTS ----------------------------
+elif section == "Projects":
+    st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
 
-    st.markdown("<div class='grid-container'>", unsafe_allow_html=True)
+    selected_project = st.session_state.get("selected_project", None)
+
+    # Grid columns
     col1, col2 = st.columns(2)
 
     with col1:
         st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
-        if st.button("NLP - Sentiment Analysis"): selected_project = "NLP - Sentiment Analysis"
-        elif st.button("Logistic Regression - Titanic Survival Prediction"): selected_project = "Logistic Regression - Titanic Survival Prediction"
-        else: selected_project = None
+        if st.markdown("<a href='#' class='project-link'>NLP - Sentiment Analysis</a>", unsafe_allow_html=True):
+            selected_project = "NLP - Sentiment Analysis"
+        if st.markdown("<a href='#' class='project-link'>Logistic Regression - Titanic Survival Prediction</a>", unsafe_allow_html=True):
+            selected_project = "Logistic Regression - Titanic Survival Prediction"
 
     with col2:
         st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
-        if st.button("Solar Panel Regression"): selected_project = "Solar Panel Regression"
-        elif st.button("Machine Learning Insights into GDP Drivers"): selected_project = "Machine Learning Insights into GDP Drivers"
-        else: selected_project = selected_project if 'selected_project' in locals() else None
+        if st.markdown("<a href='#' class='project-link'>Solar Panel Regression</a>", unsafe_allow_html=True):
+            selected_project = "Solar Panel Regression"
+        if st.markdown("<a href='#' class='project-link'>Machine Learning Insights into GDP Drivers</a>", unsafe_allow_html=True):
+            selected_project = "Machine Learning Insights into GDP Drivers"
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.session_state["selected_project"] = selected_project
 
+    # Show project details
     if selected_project:
         render_project_details(selected_project)
 
-elif menu == "Resume Download":
+# ---------------------------- RESUME DOWNLOAD ----------------------------
+elif section == "Resume Download":
+    st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
     with open("Resume - Manish Maltare - final.pdf", "rb") as f:
         st.download_button(
@@ -243,7 +249,9 @@ elif menu == "Resume Download":
             mime="application/pdf"
         )
 
-elif menu == "Contact Me":
+# ---------------------------- CONTACT ----------------------------
+elif section == "Contact Me":
+    st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
     st.write("📧 **Email:** manishmaltare@gmail.com")
     st.write("📞 **Phone:** +91 9589945630")
