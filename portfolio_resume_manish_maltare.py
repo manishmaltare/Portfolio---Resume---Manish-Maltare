@@ -258,35 +258,6 @@ def render_docx_block(title, body_html, project_name=None):
                     unsafe_allow_html=True
                 )
 
-def render_nlp_project():
-    body_html = nlp_text.replace("\n", "<br>") if nlp_text else "NLP write‑up file not found."
-    render_docx_block("NLP - Sentiment Analysis", body_html, "NLP - Sentiment Analysis")
-
-    # optional image
-    if os.path.exists("nlp_sentiment_image.png"):
-        st.image("nlp_sentiment_image.png", use_container_width=True)
-
-    st.markdown("""
-    <div class="circle-container">
-
-        <a href="https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view?usp=sharing" target="_blank">
-            <div class="circle-icon">Presentation</div>
-        </a>
-
-        <a href="https://github.com/manishmaltare/NLP---Sentiment-Analysis" target="_blank">
-            <div class="circle-icon">GitHub<br>Script</div>
-        </a>
-
-        <a href="https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment%20-%20Sentiment%20Analysis%20-%20Group%201.py" target="_blank">
-            <div class="circle-icon">Deployment<br>Script</div>
-        </a>
-
-        <a href="https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/" target="_blank">
-            <div class="circle-icon">App Link</div>
-        </a>
-
-    </div>
-    """, unsafe_allow_html=True)
 
 def render_project_details(project_name):
     if project_name == "NLP - Sentiment Analysis":
