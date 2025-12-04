@@ -140,19 +140,27 @@ button[kind="primary"] {
     color: white !important;
     border-radius:6px !important;
     font-weight:600 !important;
+    border: none !important;
 }
 button[kind="primary"]:hover {
     background-color: rgba(255,255,255,0.3) !important;
     color: black !important;
 }
 
-/* Make the specific resume download button semi‑transparent with border */
-button[kind="primary"][data-baseweb="button"][id^="resume_button"] {
-    background-color: rgba(255,255,255,0.12) !important;
-    border: 1px solid rgba(255,255,255,0.4) !important;
-    color: white !important;
+/* Make the resume download button box completely transparent */
+div[data-testid="stDownloadButton"] {
+    background-color: transparent !important;
+    border: none !important;
 }
-button[kind="primary"][data-baseweb="button"][id^="resume_button"]:hover {
+
+div[data-testid="stDownloadButton"] button {
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-radius:6px !important;
+    font-weight:600 !important;
+}
+
+div[data-testid="stDownloadButton"] button:hover {
     background-color: rgba(255,255,255,0.3) !important;
     color: black !important;
 }
