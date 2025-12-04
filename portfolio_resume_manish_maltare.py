@@ -190,18 +190,22 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+import os
+
 # ---------------------------- LOAD TEXT FILES ----------------------------
-def read_docx(file):
-    doc = docx.Document(file)
+def read_docx_safe(path, fallback=""):
+    if not os.path.exists(path):
+        return fallback
+    doc = docx.Document(path)
     return "\n".join([para.text for para in doc.paragraphs])
 
-about_text = read_docx("About Me2.docx")
+about_text = read_docx_safe("About Me2.docx", "About content coming soon.")
 
 # individual project write‑ups from separate files
-nlp_text = read_docx("NLP.docx")
-logreg_text = read_docx("Logistics-Regression.docx")
-solar_text = read_docx("solar-panel-regression.docx")
-ml_insights_text = read_docx("Machine-learning-insights.docx")
+nlp_text = read_docx_safe("NLP.docx", "NLP – Sentiment Analysis write‑up coming soon.")
+logreg_text = read_docx_safe("Logistics-Regression.docx", "Logistic Regression project write‑up coming soon.")
+solar_text = read_docx_safe("solar-panel-regression.docx", "Solar Panel Regression write‑up coming soon.")
+ml_insights_text = read_docx_safe("Machine-learning-insights.docx", "Machine Learning Insights write‑up coming soon.")
 
 # ---------------------------- LOAD LINKS ----------------------------
 def load_links():
