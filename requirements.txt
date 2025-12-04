@@ -1,4 +1,5 @@
 streamlit
+python-docx
 pandas
 scikit-learn
 numpy
@@ -7,3 +8,4 @@ Pillow
 nltk
 streamlit-lottie
 requests
+
