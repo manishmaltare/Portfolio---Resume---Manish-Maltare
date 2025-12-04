@@ -76,7 +76,7 @@ st.markdown("""
     text-align: center;
     width: 100%;
     font-weight: bold;
-    color: #000000; /* Changed color to black */
+    color: #000000; /* Set to black */
     margin-bottom: 20px;
     font-size: 16px; /* Kept at default size */
     padding-top: 20px;
@@ -317,7 +317,7 @@ def render_project_details(project_name):
 
 # ---------------------------- SIDEBAR ----------------------------
 
-# 1. Sidebar Title/Header (MOVED TO TOP)
+# 1. Sidebar Title/Header (AT THE TOP)
 st.sidebar.markdown(
     """
     <div class="sidebar-header-new">
