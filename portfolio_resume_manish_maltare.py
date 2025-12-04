@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Portfolio Resume - Manish Maltare | Projects Grid Layout"""
+"""Portfolio Resume - Manish Maltare | Projects Grid Layout with details below"""
 
 import streamlit as st
 import docx
@@ -17,21 +17,13 @@ st.markdown("""
 @import url('https://fonts.cdnfonts.com/css/copperplate-gothic');
 
 /* GLOBAL FONT */
-* {
-    font-family: 'Copperplate Gothic', sans-serif !important;
-}
+* { font-family: 'Copperplate Gothic', sans-serif !important; }
 
 /* MAIN BACKGROUND */
-body, .block-container, [data-testid="stAppViewContainer"] {
-    background-color: #000000 !important;
-}
+body, .block-container, [data-testid="stAppViewContainer"] { background-color: #000000 !important; }
 
 /* MAIN CONTENT WIDTH */
-.block-container {
-    padding-left: 150px !important;
-    padding-right: 150px !important;
-    animation: fadeSlideZoom 0.7s ease-in-out;
-}
+.block-container { padding-left: 150px !important; padding-right: 150px !important; animation: fadeSlideZoom 0.7s ease-in-out; }
 
 /* ANIMATION */
 @keyframes fadeSlideZoom {
@@ -40,113 +32,52 @@ body, .block-container, [data-testid="stAppViewContainer"] {
 }
 
 /* SIDEBAR - LIGHT GREY */
-section[data-testid="stSidebar"] {
-    background-color: #D3D3D3 !important;
-    padding: 20px 15px;
-}
+section[data-testid="stSidebar"] { background-color: #D3D3D3 !important; padding: 20px 15px; }
 
 /* SIDEBAR TITLE */
-.sidebar-title {
-    font-size: 28px;
-    font-weight: 800;
-    color: #000000 !important;
-    text-align: left;
-    line-height: 1.1;
-    margin-bottom: 30px;
-}
+.sidebar-title { font-size: 28px; font-weight: 800; color: #000000 !important; text-align: left; line-height: 1.1; margin-bottom: 30px; }
 
 /* NAV ITEMS */
 div[data-testid="stSidebar"] label,
 div[data-testid="stSidebar"] span,
 div[data-testid="stSidebar"] .stRadio > label > div {
-    color: #000000 !important;
-    font-weight: 600 !important;
+    color: #000000 !important; font-weight: 600 !important;
 }
 
 /* MAIN TITLES */
-.main-title {
-    font-size: 55px;
-    font-weight: 900;
-    color: #FFFFFF;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: -10px;
-}
-
-.sub-title-tagline {
-    font-size: 28px;
-    font-weight: 600;
-    color: #CCCCCC;
-    text-align: center;
-    margin-bottom: 45px;
-}
-
-.section-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
+.main-title { font-size: 55px; font-weight: 900; color: #FFFFFF; text-align: center; margin-top: 10px; margin-bottom: -10px; }
+.sub-title-tagline { font-size: 28px; font-weight: 600; color: #CCCCCC; text-align: center; margin-bottom: 45px; }
+.section-title { font-size: 32px; font-weight: 700; color: #FFFFFF; margin-top: 40px; margin-bottom: 20px; }
 
 /* PROJECT CATEGORY TITLE */
-.project-category {
-    font-size: 28px;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 15px;
-}
+.project-category { font-size: 28px; font-weight: 700; color: #FFFFFF; margin-bottom: 15px; }
 
 /* PROJECT CARD */
 .project-card {
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #1A1A1A;
-    border: 1px solid #333333;
-    color: #E8E8E8;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    padding: 15px; border-radius: 10px; background-color: #1A1A1A; border: 1px solid #333333;
+    color: #E8E8E8; text-align: center; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease;
     margin-bottom: 15px;
 }
 .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
-    background-color: #252525;
+    transform: translateY(-4px); box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); background-color: #252525;
 }
 
-/* PROJECT DETAILS */
+/* PROJECT DETAILS BELOW GRID */
 .project-detail {
-    padding: 18px;
-    border-radius: 10px;
-    background-color: #252525;
-    border: 1px solid #555555;
-    color: #E8E8E8;
-    margin-top: 10px;
+    padding: 18px; border-radius: 10px; background-color: #252525; border: 1px solid #555555;
+    color: #E8E8E8; margin-top: 30px;
 }
 
 /* BUTTON LINKS */
 .link-btn a {
-    padding: 8px 15px;
-    margin-right: 10px;
-    background-color: white;
-    color: black !important;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 15px;
-    border: 1px solid white;
-    transition: 0.3s;
+    padding: 8px 15px; margin-right: 10px; background-color: white; color: black !important;
+    border-radius: 6px; text-decoration: none; font-size: 15px; border: 1px solid white; transition: 0.3s;
 }
-.link-btn a:hover {
-    background-color: #000000;
-    color: white !important;
-    border-color: white;
-}
+.link-btn a:hover { background-color: #000000; color: white !important; border-color: white; }
 
 /* TEXT COLOR - WHITE */
-.stMarkdown, .stWrite, .stText {
-    color: #E8E8E8 !important;
-}
+.stMarkdown, .stWrite, .stText { color: #E8E8E8 !important; }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -194,25 +125,8 @@ def get_project_links(project_name):
             result[label] = match[0]
     return result
 
-def render_project_card(project_name):
-    """Creates a clickable project card which expands to show details"""
-    if st.button(project_name):
-        st.markdown(f"<div class='project-detail'>", unsafe_allow_html=True)
-        st.markdown(f"### {project_name}", unsafe_allow_html=True)
-        st.markdown(extract_project_section(project_name))
-        proj_links = get_project_links(project_name)
-        if proj_links:
-            st.markdown("<div class='link-btn'>", unsafe_allow_html=True)
-            for title, url in proj_links.items():
-                st.markdown(f"<a href='{url}' target='_blank'>{title}</a>", unsafe_allow_html=True)
-            st.markdown("</div>", unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-
 # ---------------------------- SIDEBAR ----------------------------
-st.sidebar.markdown(
-    "<div class='sidebar-title'>Manish Maltare<br>Portfolio</div>",
-    unsafe_allow_html=True
-)
+st.sidebar.markdown("<div class='sidebar-title'>Manish Maltare<br>Portfolio</div>", unsafe_allow_html=True)
 
 menu = st.sidebar.radio(
     "Navigation",
@@ -220,32 +134,49 @@ menu = st.sidebar.radio(
 )
 
 # ---------------------------- PAGE ROUTING ----------------------------
-
-# ABOUT ME PAGE
 if menu == "About Me":
     st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
     st.write(about_text)
 
-# PROJECTS PAGE - GRID LAYOUT
+# ---------------------------- PROJECTS PAGE ----------------------------
 elif menu == "Projects":
     st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
 
-    # Create 2 columns for Regression and Classification
     col1, col2 = st.columns(2)
+
+    # Store selected project
+    selected_project = None
 
     with col1:
         st.markdown("<div class='project-category'>Classification</div>", unsafe_allow_html=True)
-        render_project_card("NLP - Sentiment Analysis")
-        render_project_card("Logistic Regression - Titanic Survival Prediction")
+        if st.button("NLP - Sentiment Analysis"):
+            selected_project = "NLP - Sentiment Analysis"
+        if st.button("Logistic Regression - Titanic Survival Prediction"):
+            selected_project = "Logistic Regression - Titanic Survival Prediction"
 
     with col2:
         st.markdown("<div class='project-category'>Regression</div>", unsafe_allow_html=True)
-        render_project_card("Solar Panel Regression")
-        render_project_card("Machine Learning Insights into GDP Drivers")
+        if st.button("Solar Panel Regression"):
+            selected_project = "Solar Panel Regression"
+        if st.button("Machine Learning Insights into GDP Drivers"):
+            selected_project = "Machine Learning Insights into GDP Drivers"
 
-# RESUME PAGE
+    # Show project details below all cards
+    if selected_project:
+        st.markdown(f"<div class='project-detail'>", unsafe_allow_html=True)
+        st.markdown(f"### {selected_project}", unsafe_allow_html=True)
+        st.markdown(extract_project_section(selected_project))
+        proj_links = get_project_links(selected_project)
+        if proj_links:
+            st.markdown("<div class='link-btn'>", unsafe_allow_html=True)
+            for title, url in proj_links.items():
+                st.markdown(f"<a href='{url}' target='_blank'>{title}</a>", unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+# ---------------------------- RESUME PAGE ----------------------------
 elif menu == "Resume Download":
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
     with open("Resume - Manish Maltare - final.pdf", "rb") as f:
@@ -256,7 +187,7 @@ elif menu == "Resume Download":
             mime="application/pdf"
         )
 
-# CONTACT PAGE
+# ---------------------------- CONTACT PAGE ----------------------------
 elif menu == "Contact Me":
     st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
     st.write("📧 **Email:** manishmaltare@gmail.com")
