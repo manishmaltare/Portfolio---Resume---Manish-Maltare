@@ -323,8 +323,22 @@ menu = st.sidebar.radio(
 # ---------------------------- PAGE ROUTING ----------------------------
 if menu == "About Me":
     st.markdown('<a id="about"></a>', unsafe_allow_html=True)
-    st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
-    st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
+
+    # Header with image (NEW)
+    col_header_left, col_header_right = st.columns([3, 1])
+
+    with col_header_left:
+        # Overriding default center alignment
+        st.markdown("<div class='main-title' style='text-align:left; margin-top: 0px;'>Manish Maltare</div>", unsafe_allow_html=True)
+        st.markdown("<div class='sub-title-tagline' style='text-align:left; margin-bottom: 0px;'>Digital Portfolio</div>", unsafe_allow_html=True)
+
+    with col_header_right:
+        # Assuming the file "generated-image__28_-removebg-preview.png" is present
+        st.image(
+            "generated-image__28_-removebg-preview.png",
+            width=250 
+        )
+    
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
 
     st.markdown(
@@ -383,3 +397,9 @@ elif menu == "Contact Me":
     st.write("📧 **Email:** manishmaltare@gmail.com")
     st.write("📞 **Phone:** +91 9589945630")
     st.write("📍 **Address:** Keshavnagar, Pune")
+
+# ---------------------------- GLOBAL FOOTER (NEW) ----------------------------
+st.markdown(
+    "<div style='text-align:center; margin-top: 50px; padding: 20px; background-color: rgba(0,0,0,0.5); border-radius: 10px;'>Website created by **Manish Maltare**</div>",
+    unsafe_allow_html=True
+)
