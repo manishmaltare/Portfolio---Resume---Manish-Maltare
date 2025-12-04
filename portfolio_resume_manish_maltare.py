@@ -4,6 +4,7 @@
 import streamlit as st
 import docx
 import re
+import os
 
 # ---------------------------- PAGE CONFIG ----------------------------
 st.set_page_config(
@@ -190,22 +191,19 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-import os
-
 # ---------------------------- LOAD TEXT FILES ----------------------------
-def read_docx_safe(path, fallback=""):
+def read_docx_safe(path):
     if not os.path.exists(path):
-        return fallback
+        return ""
     doc = docx.Document(path)
-    return "\n".join([para.text for para in doc.paragraphs])
+    return "\n".join(p.text for p in doc.paragraphs)
 
-about_text = read_docx_safe("About Me2.docx", "About content coming soon.")
+about_text = read_docx_safe("About Me2.docx")
 
-# individual project write‑ups from separate files
-nlp_text = read_docx_safe("NLP.docx", "NLP – Sentiment Analysis write‑up coming soon.")
-logreg_text = read_docx_safe("Logistics-Regression.docx", "Logistic Regression project write‑up coming soon.")
-solar_text = read_docx_safe("solar-panel-regression.docx", "Solar Panel Regression write‑up coming soon.")
-ml_insights_text = read_docx_safe("Machine-learning-insights.docx", "Machine Learning Insights write‑up coming soon.")
+nlp_text = read_docx_safe("NLP.docx")
+logreg_text = read_docx_safe("Logistics-Regression.docx")
+solar_text = read_docx_safe("solar-panel-regression.docx")
+ml_insights_text = read_docx_safe("Machine-learning-insights.docx")
 
 # ---------------------------- LOAD LINKS ----------------------------
 def load_links():
@@ -238,27 +236,36 @@ def get_project_links(project_name):
             result[label] = match[0]
     return result
 
-# --- NLP PROJECT WITH CUSTOM LAYOUT + DOCX TEXT ---
-def render_nlp_project():
+def render_docx_block(title, body_html, project_name=None):
     st.markdown(
-        "<div class='hover-card'><h3>NLP - Sentiment Analysis</h3></div>",
+        f"<div class='hover-card'><h3>{title}</h3></div>",
         unsafe_allow_html=True
     )
-
-    # body text from NLP.docx inside same style box
     st.markdown(
         f"""
         <div class='hover-card' style="margin-top:10px;">
-            {nlp_text.replace('\n','<br>')}
+            {body_html}
         </div>
         """,
         unsafe_allow_html=True
     )
+    if project_name:
+        proj_links = get_project_links(project_name)
+        if proj_links:
+            for link_title, url in proj_links.items():
+                st.markdown(
+                    f"<a href='{url}' target='_blank'><button class='stButton'>{link_title}</button></a>",
+                    unsafe_allow_html=True
+                )
 
-    # project image (if present)
-    st.image("nlp_sentiment_image.png", use_container_width=True)
+def render_nlp_project():
+    body_html = nlp_text.replace("\n", "<br>") if nlp_text else "NLP write‑up file not found."
+    render_docx_block("NLP - Sentiment Analysis", body_html, "NLP - Sentiment Analysis")
 
-    # Circular icon links
+    # optional image
+    if os.path.exists("nlp_sentiment_image.png"):
+        st.image("nlp_sentiment_image.png", use_container_width=True)
+
     st.markdown("""
     <div class="circle-container">
 
@@ -281,48 +288,31 @@ def render_nlp_project():
     </div>
     """, unsafe_allow_html=True)
 
-def render_generic_docx_project(title, body_text, project_name):
-    # header + body from given DOCX
-    st.markdown(
-        f"<div class='hover-card'><h3>{title}</h3></div>",
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        f"""
-        <div class='hover-card' style="margin-top:10px;">
-            {body_text.replace('\n','<br>')}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    proj_links = get_project_links(project_name)
-    if proj_links:
-        for link_title, url in proj_links.items():
-            st.markdown(
-                f"<a href='{url}' target='_blank'><button class='stButton'>{link_title}</button></a>",
-                unsafe_allow_html=True
-            )
-
 def render_project_details(project_name):
     if project_name == "NLP - Sentiment Analysis":
         render_nlp_project()
+
     elif project_name == "Logistic Regression - Titanic Survival Prediction":
-        render_generic_docx_project(
+        body_html = logreg_text.replace("\n", "<br>") if logreg_text else "Logistic Regression DOCX not found."
+        render_docx_block(
             "Logistic Regression - Titanic Survival Prediction",
-            logreg_text,
+            body_html,
             project_name
         )
+
     elif project_name == "Solar Panel Regression":
-        render_generic_docx_project(
+        body_html = solar_text.replace("\n", "<br>") if solar_text else "Solar Panel Regression DOCX not found."
+        render_docx_block(
             "Solar Panel Regression",
-            solar_text,
+            body_html,
             project_name
         )
+
     elif project_name == "Machine Learning Insights into GDP Drivers":
-        render_generic_docx_project(
+        body_html = ml_insights_text.replace("\n", "<br>") if ml_insights_text else "Machine Learning Insights DOCX not found."
+        render_docx_block(
             "Machine Learning Insights into GDP Drivers",
-            ml_insights_text,
+            body_html,
             project_name
         )
 
@@ -358,7 +348,7 @@ if menu == "About Me":
             color: white;
             line-height: 1.6;
         ">
-            {about_text.replace('\n','<br>')}
+            {about_text.replace('\n','<br>') if about_text else "About content not found."}
         </div>
         """,
         unsafe_allow_html=True
