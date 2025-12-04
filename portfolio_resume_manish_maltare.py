@@ -71,18 +71,21 @@ st.markdown("""
     color:#FFD700;
 }
 
-/* Sidebar footer text (REMOVED absolute positioning) */
-.sidebar-footer-new {
+/* Sidebar Title/Footer (MODIFIED: Color Black, Increased Size, Fixed Bottom Position) */
+[data-testid="stSidebar"] .sidebar-footer-new {
+    position: fixed; /* Ensures it stays at the bottom of the screen */
+    bottom: 20px;
     text-align: center;
-    width: 100%;
-    font-weight: bold;
-    margin-top: 50px; /* Space it out from the radio buttons */
+    width: inherit; /* Inherit width from its parent to span the sidebar */
+    font-weight: 800; /* Extra bold */
+    font-size: 18px; /* Increased font size */
     padding: 10px 0;
-    color: #FFFECB;
+    color: #000000; /* Changed color to black */
+    background-color: rgba(255, 255, 255, 0.7); /* Optional: Slight white background for visibility on dark theme */
+    border-radius: 5px;
 }
 
 /* Increase font size for sidebar radio options (Navigation) */
-/* Targets the labels within the radio group container */
 div[data-testid="stSidebar"] div[role="radiogroup"] label {
     font-size: 20px !important;
     font-weight: 700 !important;
@@ -321,7 +324,7 @@ menu = st.sidebar.radio(
     ["About Me", "Projects", "Resume", "Contact Me"]
 )
 
-# 2. Sidebar Title/Footer (Moved to below the radio buttons and using new CSS)
+# 2. Sidebar Title/Footer (Placed outside the absolute position block)
 st.sidebar.markdown(
     """
     <div class="sidebar-footer-new">
@@ -362,7 +365,7 @@ elif menu == "Projects":
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("<h3>Classification </h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
         if st.button("NLP - Sentiment Analysis"):
             st.session_state["selected_project"] = "NLP - Sentiment Analysis"
         if st.button("Logistic Regression - Titanic Survival Prediction"):
