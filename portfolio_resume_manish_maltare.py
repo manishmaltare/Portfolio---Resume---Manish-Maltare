@@ -134,14 +134,6 @@ st.markdown("""
     flex: 1;
 }
 
-/* Semi-transparent black box for text sections */
-.text-card {
-    background-color: rgba(0, 0, 0, 0.55);
-    padding: 20px 24px;
-    border-radius: 12px;
-    margin-top: 10px;
-}
-
 /* Style all primary buttons like project buttons (light transparent) */
 button[kind="primary"] {
     background-color: rgba(255,255,255,0.1) !important;
@@ -209,7 +201,6 @@ links = load_links()
 
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
 def extract_project_section(project_name):
-    # Match text after project_name until next all‑caps heading (3+ chars) or end of string
     pattern = rf"{project_name}(.*?)(?=[A-Z ]{{3,}}|$)"
     match = re.search(pattern, projects_text, re.S)
     return match.group(1).strip() if match else ""
@@ -225,7 +216,88 @@ def get_project_links(project_name):
     }
     for key, label in mapping.items():
         block = links.get(key, [""])[0]
-        match = re.findall(rf"{project_name}.*?:\s*(https?://\S+)", block)
+        match = re.findall(rf"{project_name}.*?:\s*(https?://\\S+)", block)
         if match:
             result[label] = match[0]
     return result
+
+def render_project_details(project_name):
+    st.markdown(
+        f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>",
+        unsafe_allow_html=True
+    )
+    proj_links = get_project_links(project_name)
+    if proj_links:
+        for title, url in proj_links.items():
+            st.markdown(
+                f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>",
+                unsafe_allow_html=True
+            )
+
+# ---------------------------- SIDEBAR ----------------------------
+st.sidebar.markdown(
+    """
+    <div class="sidebar-footer">
+        Digital Portfolio<br>
+        Manish Maltare
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+menu = st.sidebar.radio(
+    "Navigation",
+    ["About Me", "Projects", "Resume Download", "Contact Me"]
+)
+
+# ---------------------------- PAGE ROUTING ----------------------------
+if menu == "About Me":
+    st.markdown('<a id="about"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
+    st.write(about_text)
+
+elif menu == "Projects":
+    st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
+
+    selected_project = st.session_state.get("selected_project", None)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
+        if st.button("NLP - Sentiment Analysis"):
+            st.session_state["selected_project"] = "NLP - Sentiment Analysis"
+        if st.button("Logistic Regression - Titanic Survival Prediction"):
+            st.session_state["selected_project"] = "Logistic Regression - Titanic Survival Prediction"
+
+    with col2:
+        st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
+        if st.button("Solar Panel Regression"):
+            st.session_state["selected_project"] = "Solar Panel Regression"
+        if st.button("Machine Learning Insights into GDP Drivers"):
+            st.session_state["selected_project"] = "Machine Learning Insights into GDP Drivers"
+
+    if st.session_state.get("selected_project"):
+        render_project_details(st.session_state["selected_project"])
+
+elif menu == "Resume Download":
+    st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
+    with open("Resume - Manish Maltare - final.pdf", "rb") as f:
+        st.download_button(
+            label="📄 Download Resume (PDF)",
+            data=f,
+            file_name="Manish_Maltare_Resume.pdf",
+            mime="application/pdf",
+            key="resume_button"
+        )
+
+elif menu == "Contact Me":
+    st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
+    st.write("📧 **Email:** manishmaltare@gmail.com")
+    st.write("📞 **Phone:** +91 9589945630")
+    st.write("📍 **Address:** Keshavnagar, Pune")
