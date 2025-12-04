@@ -71,15 +71,20 @@ st.markdown("""
     color:#FFD700;
 }
 
-/* Sidebar Header Text (New/Reverted Position: TOP of sidebar) */
+/* Sidebar Header Text (MODIFIED: Black color, Increased size, TOP of sidebar) */
 .sidebar-header-new {
     text-align: center;
     width: 100%;
-    font-weight: bold;
-    color: #FFFECB; /* Reverted to a light color */
+    font-weight: 800; /* Increased font weight for better visibility */
+    color: #000000; /* Changed color to black */
     margin-bottom: 20px;
-    font-size: 16px; /* Reverted to a normal size */
+    font-size: 20px; /* Increased font size */
     padding-top: 20px;
+    /* Adding a light background so black text is visible on the dark background */
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding-bottom: 5px;
+    margin-right: -20px; /* Corrects alignment issue caused by padding/margins in streamlit sidebar */
+    margin-left: -20px;
 }
 
 /* Increase font size for sidebar radio options (Navigation) */
@@ -236,7 +241,7 @@ def render_circle_links_fixed(project_name):
             "App Link": "https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/",
         },
         "Machine Learning Insights into GDP Drivers": {
-            "Report": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing", # UPDATED LABEL AND URL
+            "Report": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing",
             "GitHub - Script": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
             "GitHub - Deployment": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
             "YouTube Video": "https://youtu.be/y6vTDqyEPdw?si=9x0Zb8B-2KPosX0R",
@@ -315,7 +320,7 @@ def render_project_details(project_name):
 
 # ---------------------------- SIDEBAR ----------------------------
 
-# 1. Sidebar Title/Header (MOVED TO TOP)
+# 1. Sidebar Title/Header (TOP, Increased Size, Black Color)
 st.sidebar.markdown(
     """
     <div class="sidebar-header-new">
