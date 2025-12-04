@@ -73,15 +73,6 @@ st.markdown("""
     color:#FFD700;
 }
 
-/* Digital Portfolio text below top nav */
-.digital-portfolio {
-    margin-top: 70px; /* space from fixed top nav */
-    text-align: center;
-    font-weight: 900;
-    font-size: 28px;
-    color: white;
-}
-
 /* Sidebar footer text */
 .sidebar-footer {
     position: absolute;
@@ -167,9 +158,6 @@ st.markdown("""
     <a href="#contact">Contact Me</a>
 </div>
 """, unsafe_allow_html=True)
-
-# ---------------------------- DIGITAL PORTFOLIO TEXT ----------------------------
-st.markdown('<div class="digital-portfolio">Digital Portfolio / Manish Maltare</div>', unsafe_allow_html=True)
 
 # ---------------------------- LOAD TEXT FILES ----------------------------
 def read_docx(file):
@@ -273,7 +261,6 @@ elif menu == "Projects":
 elif menu == "Resume Download":
     st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
-    st.markdown('<div class="digital-portfolio">Digital Portfolio / Manish Maltare</div>', unsafe_allow_html=True)
     with open("Resume - Manish Maltare - final.pdf", "rb") as f:
         st.download_button(
             label="📄 Download Resume (PDF)",
@@ -286,7 +273,6 @@ elif menu == "Resume Download":
 elif menu == "Contact Me":
     st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
-    st.markdown('<div class="digital-portfolio">Digital Portfolio / Manish Maltare</div>', unsafe_allow_html=True)
     st.write("📧 **Email:** manishmaltare@gmail.com")
     st.write("📞 **Phone:** +91 9589945630")
     st.write("📍 **Address:** Keshavnagar, Pune")
