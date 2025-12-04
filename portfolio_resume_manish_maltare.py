@@ -5,10 +5,9 @@ import os
 
 # ---------------------------- PAGE CONFIG ----------------------------
 st.set_page_config(
-    page_title="Manish Maltare - Digital Portfolio",
-    layout="wide"
+    page_title="Manish Maltare - Digital Portfolio",
+    layout="wide"
 )
-
 # ---------------------------- CUSTOM CSS ----------------------------
 st.markdown("""
 <style>
