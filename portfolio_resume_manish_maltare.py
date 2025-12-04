@@ -14,11 +14,11 @@ st.set_page_config(
 # ---------------------------- CUSTOM CSS ----------------------------
 st.markdown("""
 <style>
-@import url('https://fonts.cdnfonts.com/css/copperplate-gothic');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
 
 /* GLOBAL FONT */
 * {
-    font-family: 'Copperplate Gothic', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 /* PAGE BACKGROUND IMAGE */
