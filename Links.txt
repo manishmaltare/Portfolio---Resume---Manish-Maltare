@@ -1,0 +1,62 @@
+PPTs : -
+
+Machine Learning Insights into GDP Drivers:-  https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing
+
+NLP - Sentiment Analysis :- https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view?usp=sharing
+
+Solar Panel Regression :- https://drive.google.com/file/d/1unMOirI9oFjn2lKJH97sVE4985Gp0mea/view?usp=sharing
+
+
+
+GitHub Files: -
+
+Machine Learning Insights into GDP Drivers:-  https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers
+
+Solar Panel Regression :- https://github.com/manishmaltare/Solar-Panel-Regression-1
+
+Logistic Regression - Titanic Survival Prediction :- https://github.com/manishmaltare/Manish-Maltare/blob/main/RESUME_Logistic_Regression_Assignment.ipynb
+
+
+
+GitHub Deployment Files: -
+
+Machine Learning Insights into GDP Drivers:-  https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers
+
+NLP - Sentiment Analysis :-   https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment%20-%20Sentiment%20Analysis%20-%20Group%201.py
+
+Solar Panel Regression :- https://github.com/manishmaltare/Solar-Panel-Regression-1
+
+Logistic Regression - Titanic Survival Prediction :- https://github.com/manishmaltare/Manish-Maltare/blob/main/pickle_of_assignment_logisticregression_deployment_final.py
+
+
+
+App Deployment Links : -
+
+NLP - Sentiment Analysis :- https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/
+
+Solar Panel Regression :- https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/
+
+Logistic Regression - Titanic Survival Prediction :- https://manish-maltare-8pw78deodbfyqewds8uere.streamlit.app/
+
+
+
+
+YouTube video Links : -
+
+Machine Learning Insights into GDP Drivers:-  https://youtu.be/y6vTDqyEPdw?si=9x0Zb8B-2KPosX0R
+
+
+
+Resume Link :- 
+
+https://drive.google.com/file/d/1NuDVMIe5TDJn6TRuUHbZs4Eq7masQLQY/view?usp=sharing
+
+
+
+
+
+
+
+
+
+
