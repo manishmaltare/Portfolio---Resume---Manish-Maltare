@@ -196,7 +196,12 @@ def read_docx(file):
     return "\n".join([para.text for para in doc.paragraphs])
 
 about_text = read_docx("About Me2.docx")
-projects_text = read_docx("Projects2.docx")
+
+# individual project write‑ups from separate files
+nlp_text = read_docx("NLP.docx")
+logreg_text = read_docx("Logistics-Regression.docx")
+solar_text = read_docx("solar-panel-regression.docx")
+ml_insights_text = read_docx("Machine-learning-insights.docx")
 
 # ---------------------------- LOAD LINKS ----------------------------
 def load_links():
@@ -213,11 +218,6 @@ def load_links():
 links = load_links()
 
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
-def extract_project_section(project_name):
-    pattern = rf"{project_name}(.*?)(?=[A-Z ]{{3,}}|$)"
-    match = re.search(pattern, projects_text, re.S)
-    return match.group(1).strip() if match else ""
-
 def get_project_links(project_name):
     result = {}
     mapping = {
@@ -229,29 +229,29 @@ def get_project_links(project_name):
     }
     for key, label in mapping.items():
         block = links.get(key, [""])[0]
-        match = re.findall(rf"{project_name}.*?:\s*(https?://\\S+)", block)
+        match = re.findall(rf"{project_name}.*?:\s*(https?://\S+)", block)
         if match:
             result[label] = match[0]
     return result
 
-# --- NEW: CUSTOM PROJECT RENDERER FOR NLP PROJECT ---
+# --- NLP PROJECT WITH CUSTOM LAYOUT + DOCX TEXT ---
 def render_nlp_project():
     st.markdown(
+        "<div class='hover-card'><h3>NLP - Sentiment Analysis</h3></div>",
+        unsafe_allow_html=True
+    )
+
+    # body text from NLP.docx inside same style box
+    st.markdown(
         f"""
-        <div class='hover-card'>
-            <h3>NLP - Sentiment Analysis</h3>
-            <p>
-                This project analyzes text data using Natural Language Processing (NLP) techniques 
-                to classify sentiments as Positive, Negative, or Neutral.
-                It includes preprocessing, TF-IDF vectorization, model building (SVC), 
-                and deployment through a Streamlit web app.
-            </p>
+        <div class='hover-card' style="margin-top:10px;">
+            {nlp_text.replace('\n','<br>')}
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    # Display project image
+    # project image (if present)
     st.image("nlp_sentiment_image.png", use_container_width=True)
 
     # Circular icon links
@@ -277,24 +277,50 @@ def render_nlp_project():
     </div>
     """, unsafe_allow_html=True)
 
-
-def render_project_details(project_name):
-    if project_name == "NLP - Sentiment Analysis":
-        render_nlp_project()
-        return
-
+def render_generic_docx_project(title, body_text, project_name):
+    # header + body from given DOCX
     st.markdown(
-        f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>",
+        f"<div class='hover-card'><h3>{title}</h3></div>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        f"""
+        <div class='hover-card' style="margin-top:10px;">
+            {body_text.replace('\n','<br>')}
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
     proj_links = get_project_links(project_name)
     if proj_links:
-        for title, url in proj_links.items():
+        for link_title, url in proj_links.items():
             st.markdown(
-                f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>",
+                f"<a href='{url}' target='_blank'><button class='stButton'>{link_title}</button></a>",
                 unsafe_allow_html=True
             )
+
+def render_project_details(project_name):
+    if project_name == "NLP - Sentiment Analysis":
+        render_nlp_project()
+    elif project_name == "Logistic Regression - Titanic Survival Prediction":
+        render_generic_docx_project(
+            "Logistic Regression - Titanic Survival Prediction",
+            logreg_text,
+            project_name
+        )
+    elif project_name == "Solar Panel Regression":
+        render_generic_docx_project(
+            "Solar Panel Regression",
+            solar_text,
+            project_name
+        )
+    elif project_name == "Machine Learning Insights into GDP Drivers":
+        render_generic_docx_project(
+            "Machine Learning Insights into GDP Drivers",
+            ml_insights_text,
+            project_name
+        )
 
 # ---------------------------- SIDEBAR ----------------------------
 st.sidebar.markdown(
