@@ -190,10 +190,10 @@ st.markdown("""
 
 # ---------------------------- LOAD TEXT FILES ----------------------------
 def read_docx_safe(path):
-    if not os.path.exists(path):
-        return ""
-    doc = docx.Document(path)
-    return "\n".join(p.text for p in doc.paragraphs)
+    if not os.path.exists(path):
+        return ""
+    doc = docx.Document(path)
+    return "\n".join(p.text for p in doc.paragraphs)
 
 about_text = read_docx_safe("About Me2.docx")
 
