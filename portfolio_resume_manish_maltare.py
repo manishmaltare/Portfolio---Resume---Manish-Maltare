@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Manish Maltare - Portfolio with Horizontal Top Navigation"""
+"""Manish Maltare - Portfolio with Top Transparent Navigation Ribbon"""
 
 import streamlit as st
 import docx
@@ -30,18 +30,21 @@ st.markdown("""
     color: white !important;
 }
 
-/* HORIZONTAL NAV BAR */
+/* TOP NAV BAR */
 .top-nav {
     width: 100%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.5); /* semi-transparent */
     padding: 10px 20px;
     display: flex;
     justify-content: center;
     gap: 40px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
     border-radius: 0 0 10px 10px;
 }
 .top-nav button {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.2); /* semi-transparent button */
     border: none;
     color: #FFFECB;
     font-size: 18px;
@@ -52,12 +55,13 @@ st.markdown("""
     transition: 0.3s;
 }
 .top-nav button:hover {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.4);
     color: black;
 }
 
 /* MAIN CONTENT AREA */
 .block-container {
+    padding-top: 80px !important; /* leave space for fixed nav bar */
     padding-left: 50px !important;
     padding-right: 50px !important;
     color: white !important;
@@ -181,24 +185,7 @@ def render_project_details(project_name):
             st.markdown(f"<a href='{url}' target='_blank' class='project-btn'>{title}</a>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
-# ---------------------------- HORIZONTAL TOP NAV ----------------------------
-menu = None
-st.markdown("""
-<div class="top-nav">
-<form action="">
-<input type="submit" name="menu" value="About Me">
-<input type="submit" name="menu" value="Projects">
-<input type="submit" name="menu" value="Resume Download">
-<input type="submit" name="menu" value="Contact Me">
-</form>
-</div>
-""", unsafe_allow_html=True)
-
-# Fallback if menu is not set
-if 'menu' not in st.session_state:
-    st.session_state.menu = "About Me"
-
-# Use Streamlit buttons to select menu
+# ---------------------------- TOP NAVIGATION ----------------------------
 col1, col2, col3, col4 = st.columns([1,1,1,1])
 with col1:
     if st.button("About Me"):
@@ -213,6 +200,9 @@ with col4:
     if st.button("Contact Me"):
         st.session_state.menu = "Contact Me"
 
+if 'menu' not in st.session_state:
+    st.session_state.menu = "About Me"
+
 menu = st.session_state.menu
 
 # ---------------------------- PAGE ROUTING ----------------------------
@@ -225,9 +215,7 @@ if menu == "About Me":
 elif menu == "Projects":
     st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
 
-    # Create two columns: Classification and Regression
     st.markdown("<div class='grid-container'>", unsafe_allow_html=True)
-
     col1, col2 = st.columns(2)
 
     with col1:
@@ -244,7 +232,6 @@ elif menu == "Projects":
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # Show project details below the grid
     if selected_project:
         render_project_details(selected_project)
 
