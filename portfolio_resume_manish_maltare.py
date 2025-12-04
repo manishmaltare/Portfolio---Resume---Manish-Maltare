@@ -204,6 +204,7 @@ solar_text = read_docx_safe("solar panel regression.docx")
 ml_insights_text = read_docx_safe("Machine learning insights.docx")
 
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
+
 def render_circle_links_fixed(project_name):
     links_map = {
         "NLP - Sentiment Analysis": {
@@ -236,14 +237,19 @@ def render_circle_links_fixed(project_name):
     if not proj_links:
         return
 
-    html = '<div class="circle-container">'
+    # GENERATE HTML LINKS WITHOUT EXTRA NEWLINES/INDENTATION
+    link_html_list = []
     for label, url in proj_links.items():
-        html += f'''
-        <a href="{url}" target="_blank">
-            <div class="circle-icon">{label}</div>
-        </a>
-        '''
-    html += "</div>"
+        # Create a single line of HTML for each link to prevent Markdown code block interpretation
+        link_html = (
+            f'<a href="{url}" target="_blank">'
+            f'<div class="circle-icon">{label}</div>'
+            f'</a>'
+        )
+        link_html_list.append(link_html)
+    
+    # Join all links and wrap in the container
+    html = f'<div class="circle-container">{" ".join(link_html_list)}</div>'
 
     st.markdown(html, unsafe_allow_html=True)
 
