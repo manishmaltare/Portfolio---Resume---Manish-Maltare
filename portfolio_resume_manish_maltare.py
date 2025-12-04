@@ -158,6 +158,40 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+/* Circular Icon Buttons */
+.circle-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.circle-icon {
+    width: 120px;
+    height: 120px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    transition: 0.3s;
+    border: 2px solid rgba(255,255,255,0.4);
+    padding: 10px;
+}
+
+.circle-icon:hover {
+    background: rgba(255,255,255,0.35);
+    color: black;
+    transform: scale(1.08);
+    border-color: white;
+}
+
+
 # ---------------------------- TOP NAVIGATION ----------------------------
 st.markdown("""
 <div class="top-nav">
@@ -264,6 +298,27 @@ def render_nlp_custom():
 
     </div>
     """, unsafe_allow_html=True)
+
+<div class="circle-container">
+
+    <a href="https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view?usp=sharing" target="_blank">
+        <div class="circle-icon">Presentation</div>
+    </a>
+
+    <a href="https://github.com/manishmaltare/NLP---Sentiment-Analysis" target="_blank">
+        <div class="circle-icon">GitHub<br>Script</div>
+    </a>
+
+    <a href="https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment%20-%20Sentiment%20Analysis%20-%20Group%201.py" target="_blank">
+        <div class="circle-icon">Deployment<br>Script</div>
+    </a>
+
+    <a href="https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/" target="_blank">
+        <div class="circle-icon">App Link</div>
+    </a>
+
+</div>
+
 
 # ---------------------------- GENERAL PROJECT RENDER ----------------------------
 def render_project_details(project_name):
