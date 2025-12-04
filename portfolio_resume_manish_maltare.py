@@ -56,10 +56,31 @@ section[data-testid="stSidebar"] {
     margin-bottom: 40px;
 }
 
-/* NAV ITEMS (PURE WHITE) */
-div[data-testid="stSidebar"] * {
-    color: white !important;
+/* ---------------------- NAVIGATION ITEMS (VIBRANT YELLOW) ---------------------- */
+
+/* Radio label text */
+.st-emotion-cache-1v0mbdj, .st-emotion-cache-1v0mbdj * {
+    color: #FFD300 !important;      /* vibrant yellow */
+    font-weight: 600 !important;
 }
+
+/* Radio button unselected */
+.stRadio > label > div[role="radiogroup"] > label div:first-child {
+    border: 2px solid #FFD300 !important;
+}
+
+/* Selected radio button circle */
+.stRadio > label > div[role="radiogroup"] > label[data-selected="true"] div:first-child {
+    background-color: #FFD300 !important;
+    border: 2px solid #FFD300 !important;
+}
+
+/* Hover effect */
+.st-emotion-cache-1v0mbdj:hover {
+    background-color: rgba(255, 211, 0, 0.15) !important;  /* soft yellow glow */
+    border-radius: 6px;
+}
+
 
 .st-emotion-cache-1v0mbdj {
     background-color: transparent !important;
