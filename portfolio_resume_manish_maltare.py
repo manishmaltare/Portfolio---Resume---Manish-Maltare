@@ -255,22 +255,25 @@ elif menu == "Projects":
 
     with col1:
         st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
-        if st.button("NLP - Sentiment Analysis"): selected_project = "NLP - Sentiment Analysis"
-        if st.button("Logistic Regression - Titanic Survival Prediction"): selected_project = "Logistic Regression - Titanic Survival Prediction"
+        if st.button("NLP - Sentiment Analysis"): 
+            st.session_state["selected_project"] = "NLP - Sentiment Analysis"
+        if st.button("Logistic Regression - Titanic Survival Prediction"): 
+            st.session_state["selected_project"] = "Logistic Regression - Titanic Survival Prediction"
 
     with col2:
         st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
-        if st.button("Solar Panel Regression"): selected_project = "Solar Panel Regression"
-        if st.button("Machine Learning Insights into GDP Drivers"): selected_project = "Machine Learning Insights into GDP Drivers"
+        if st.button("Solar Panel Regression"): 
+            st.session_state["selected_project"] = "Solar Panel Regression"
+        if st.button("Machine Learning Insights into GDP Drivers"): 
+            st.session_state["selected_project"] = "Machine Learning Insights into GDP Drivers"
 
-    st.session_state["selected_project"] = selected_project
-
-    if selected_project:
-        render_project_details(selected_project)
+    if st.session_state.get("selected_project"):
+        render_project_details(st.session_state["selected_project"])
 
 elif menu == "Resume Download":
     st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
+    st.markdown('<div class="digital-portfolio">Digital Portfolio / Manish Maltare</div>', unsafe_allow_html=True)
     with open("Resume - Manish Maltare - final.pdf", "rb") as f:
         st.download_button(
             label="📄 Download Resume (PDF)",
@@ -283,6 +286,7 @@ elif menu == "Resume Download":
 elif menu == "Contact Me":
     st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
+    st.markdown('<div class="digital-portfolio">Digital Portfolio / Manish Maltare</div>', unsafe_allow_html=True)
     st.write("📧 **Email:** manishmaltare@gmail.com")
     st.write("📞 **Phone:** +91 9589945630")
     st.write("📍 **Address:** Keshavnagar, Pune")
