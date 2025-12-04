@@ -3,13 +3,12 @@
    Updated: full DOCX text included for projects, preserve ONLY bold (as <strong>),
    add 4 circular icon buttons under each project (links hidden in code, opened via buttons).
 """
-Portfolio---Resume---Manish-Maltare/
-    portfolio_resume_manish_maltare.py
-    NLP.docx
-    Logistic Regression.docx
-    Solar Panel Regression.docx
-    Machine Learning Insights.docx
-    About Me2.docx
+portfolio_resume_manish_maltare.py
+NLP.docx
+Logistic Regression.docx
+Solar Panel Regression.docx
+Machine Learning Insights.docx
+About Me2.docx
 
 import streamlit as st
 import docx
