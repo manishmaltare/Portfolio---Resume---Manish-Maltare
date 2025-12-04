@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 # ---------------------------- CUSTOM CSS ----------------------------
-# ---------------------------- CUSTOM CSS ----------------------------
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
@@ -145,13 +145,19 @@ div[data-testid="stDownloadButton"] button:hover {
     color: black !important;
 }
 
+/* Grid layout */
+.grid-container {
+    display: flex;
+    gap: 50px; // <-- This is where the error pattern is, but you are specifically told line 186, which is inside .circle-container
+}
+
 /* ------------------ CIRCULAR ICON BUTTONS ------------------ */
 .circle-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 25px;
-    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 30px; // <-- Line 186 (or near it) is likely here
+    margin-top: 25px;
+    flex-wrap: wrap;
 }
 
 /* UPDATED BACKGROUND HERE */
