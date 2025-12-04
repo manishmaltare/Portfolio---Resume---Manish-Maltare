@@ -201,9 +201,9 @@ def read_docx_safe(path):
 about_text = read_docx_safe("About Me2.docx")
 
 nlp_text = read_docx_safe("NLP.docx")
-logreg_text = read_docx_safe("Logistics-Regression.docx")
-solar_text = read_docx_safe("solar-panel-regression.docx")
-ml_insights_text = read_docx_safe("Machine-learning-insights.docx")
+logreg_text = read_docx_safe("Logistics Regression.docx")
+solar_text = read_docx_safe("solar panel regression.docx")
+ml_insights_text = read_docx_safe("Machine learning insights.docx")
 
 # ---------------------------- LOAD LINKS ----------------------------
 def load_links():
