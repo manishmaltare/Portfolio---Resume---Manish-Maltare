@@ -125,44 +125,35 @@ st.markdown("""
     margin-top: 0;
 }
 
-/* Grid layout */
-.grid-container {
+/* Fancy circular icons */
+.circle-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
     display: flex;
-    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border: 2px solid white;
+    transition: 0.3s;
+    text-align:center;
+    padding:10px;
 }
-.grid-column {
-    flex: 1;
-}
-
-/* Style all primary buttons like project buttons (light transparent) */
-button[kind="primary"] {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border-radius:6px !important;
-    font-weight:600 !important;
-    border: none !important;
-}
-button[kind="primary"]:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: black !important;
+.circle-icon:hover {
+    background: rgba(255,255,255,0.4);
+    color: black;
+    transform: scale(1.08);
 }
 
-/* Make the resume download button box completely transparent */
-div[data-testid="stDownloadButton"] {
-    background-color: transparent !important;
-    border: none !important;
-}
-
-div[data-testid="stDownloadButton"] button {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border-radius:6px !important;
-    font-weight:600 !important;
-}
-
-div[data-testid="stDownloadButton"] button:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: black !important;
+/* Icon container */
+.icon-row {
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:30px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -199,7 +190,7 @@ def load_links():
 
 links = load_links()
 
-# ---------------------------- PROJECT FUNCTIONS ----------------------------
+# ---------------------------- PROJECT HELPERS ----------------------------
 def extract_project_section(project_name):
     pattern = rf"{project_name}(.*?)(?=[A-Z ]{{3,}}|$)"
     match = re.search(pattern, projects_text, re.S)
@@ -221,7 +212,68 @@ def get_project_links(project_name):
             result[label] = match[0]
     return result
 
+# ---------------------------- NLP CUSTOM WRITE-UP + ICONS ----------------------------
+def render_nlp_custom():
+    writeup = """
+    <div class='hover-card'>
+    <h3>NLP - Sentiment Analysis</h3>
+
+    <p>
+    In this project, I developed a high-performing <b>Support Vector Classifier (SVC)</b> capable of detecting sentiment in 
+    mixed-language feedback (English + Hinglish). The workflow included <b>text cleaning</b>, <b>normalization</b>, 
+    <b>Hinglish keyword mapping</b>, <b>stopword filtration</b>, and <b>TF-IDF vectorization</b>.  
+    <br><br>
+    After experimentation with Random Forest and Naive Bayes, SVC delivered the best performance with 
+    a strong <b>97% test accuracy</b>.
+    <br><br>
+    In deployment, additional refinements were required such as handling <b>negations</b>, improving 
+    <b>lemmatization</b>, addressing mixed token patterns, and packaging the complete pipeline using 
+    <b>pickle</b>. A clean Streamlit UI was built for real-time predictions.
+    <br><br>
+    Key takeaways:
+    <ul>
+        <li>SVC performs exceptionally well for noisy real-world text data</li>
+        <li>Hybrid preprocessing dramatically improves accuracy</li>
+        <li>Pipeline structuring ensures easy deployment and maintainability</li>
+    </ul>
+    </p>
+    </div>
+    """
+
+    st.markdown(writeup, unsafe_allow_html=True)
+
+    # Icon buttons (NO URL text shown)
+    st.markdown("""
+    <div class="icon-row">
+
+        <a href="https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view?usp=sharing" target="_blank">
+            <div class="circle-icon">Presentation</div>
+        </a>
+
+        <a href="https://github.com/manishmaltare/NLP---Sentiment-Analysis" target="_blank">
+            <div class="circle-icon">GitHub<br>Script</div>
+        </a>
+
+        <a href="https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment%20-%20Sentiment%20Analysis%20-%20Group%201.py" target="_blank">
+            <div class="circle-icon">Deployment<br>Script</div>
+        </a>
+
+        <a href="https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/" target="_blank">
+            <div class="circle-icon">App Link</div>
+        </a>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+# ---------------------------- GENERAL PROJECT RENDER ----------------------------
 def render_project_details(project_name):
+
+    # SPECIAL CASE → NLP PROJECT
+    if project_name == "NLP - Sentiment Analysis":
+        render_nlp_custom()
+        return
+
+    # DEFAULT FOR OTHER PROJECTS
     st.markdown(
         f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>",
         unsafe_allow_html=True
@@ -257,7 +309,6 @@ if menu == "About Me":
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
 
-    # Wrap About Me text in a semi-transparent black box
     st.markdown(
         f"""
         <div style="
@@ -272,7 +323,6 @@ if menu == "About Me":
         """,
         unsafe_allow_html=True
     )
-
 
 elif menu == "Projects":
     st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
