@@ -41,14 +41,15 @@ section[data-testid="stSidebar"] {
 .sidebar-title {
     font-size: 28px;
     font-weight: 800;
-    color: white;
+    color: #FFD700; /* Vibrant golden yellow */
     margin-bottom: 30px;
 }
 
-/* Sidebar menu options */
+/* Sidebar menu options - vibrant color */
 div[data-testid="stSidebar"] label, 
-div[data-testid="stSidebar"] span {
-    color: white !important;
+div[data-testid="stSidebar"] span,
+div[data-testid="stSidebar"] .stRadio label {
+    color: #00CED1 !important; /* turquoise color */
     font-weight: 600 !important;
     font-size: 16px;
 }
