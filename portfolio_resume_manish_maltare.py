@@ -323,24 +323,8 @@ menu = st.sidebar.radio(
 # ---------------------------- PAGE ROUTING ----------------------------
 if menu == "About Me":
     st.markdown('<a id="about"></a>', unsafe_allow_html=True)
-
-    # 1. Create two columns for the header (3 parts for text, 1 part for image)
-    col_header_left, col_header_right = st.columns([3, 1])
-
-    with col_header_left:
-        # 2. Add title and tagline to the left column, overriding the center-alignment
-        st.markdown("<div class='main-title' style='text-align:left; margin-top: 0px;'>Manish Maltare</div>", unsafe_allow_html=True)
-        st.markdown("<div class='sub-title-tagline' style='text-align:left; margin-bottom: 0px;'>Digital Portfolio</div>", unsafe_allow_html=True)
-
-    with col_header_right:
-        # 3. Add the image to the right column
-        # Ensure the file "generated-image__28_-removebg-preview.png" is in the same directory
-        st.image(
-            "generated-image__28_-removebg-preview.png",
-            width=250 # Adjust width to control the size of the image
-        )
-
-    # 4. Add the rest of the content below the header columns
+    st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
 
     st.markdown(
@@ -359,7 +343,6 @@ if menu == "About Me":
     )
 
 elif menu == "Projects":
-# ... rest of the code
     st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
 
