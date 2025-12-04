@@ -7,4 +7,3 @@ Pillow
 nltk
 streamlit-lottie
 requests
-docx
