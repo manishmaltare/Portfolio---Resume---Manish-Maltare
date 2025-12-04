@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Portfolio Resume - Manish Maltare | Animated Green Theme"""
+"""Portfolio Resume - Manish Maltare | Background Image and White Text"""
 
 import streamlit as st
 import docx
@@ -22,26 +22,31 @@ st.markdown("""
     font-family: 'Copperplate Gothic', sans-serif !important;
 }
 
-/* PAGE BACKGROUND - GREEN (#9DC183) */
+/* PAGE BACKGROUND IMAGE */
 body {
-    background-color: #9DC183 !important;
+    background-image: url('5072609.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white !important;
 }
 
-/* CONTAINER WIDTH (NARROW CENTERED LOOK) */
+/* CONTAINER WIDTH */
 .block-container {
     padding-left: 180px !important;
     padding-right: 180px !important;
     animation: fadeSlideZoom 0.7s ease-in-out;
-    background-color: #9DC183 !important;
+    background-color: rgba(0,0,0,0.5) !important; /* semi-transparent overlay for readability */
 }
 
-/* MAIN CONTENT AREA - GREEN BACKGROUND */
+/* MAIN CONTENT AREA */
 .main {
-    background-color: #9DC183 !important;
+    background-color: transparent !important;
 }
 
 [data-testid="stAppViewContainer"] {
-    background-color: #9DC183 !important;
+    background-color: transparent !important;
 }
 
 /* MIXED ANIMATION */
@@ -50,11 +55,12 @@ body {
     100% { opacity: 1; transform: translateY(0px) scale(1); }
 }
 
-/* ---------------------- SIDEBAR - LIGHT GREY BACKGROUND ---------------------- */
+/* SIDEBAR - LIGHT GREY WITH BLACK TEXT */
 section[data-testid="stSidebar"] {
-    background-color: #D3D3D3 !important;  /* light grey */
+    background-color: #D3D3D3 !important;
     padding: 20px 15px;
-    width: 220px !important; /* reduce width */
+    width: 220px !important;
+    color: black !important;
 }
 
 /* SIDEBAR TITLE - BLACK TEXT */
@@ -74,7 +80,7 @@ div[data-testid="stSidebar"] span {
     font-weight: 600 !important;
 }
 
-/* RADIO BUTTON OPTIONS (Navigation Items) */
+/* RADIO BUTTON OPTIONS */
 div[data-testid="stSidebar"] .st-radio > label > div {
     color: #000000 !important;
 }
@@ -100,12 +106,11 @@ div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {
     color: #000000 !important;
 }
 
-/* ---------------------- TITLES - BLACK TEXT ON GREEN ---------------------- */
-
+/* TITLES - WHITE TEXT */
 .main-title {
     font-size: 55px;
     font-weight: 900;
-    color: #000000;
+    color: white;
     text-align: center;
     margin-top: 10px;
     margin-bottom: -10px;
@@ -114,7 +119,7 @@ div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {
 .sub-title-tagline {
     font-size: 28px;
     font-weight: 600;
-    color: #333333;
+    color: #dddddd;
     text-align: center;
     margin-bottom: 45px;
 }
@@ -122,7 +127,7 @@ div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {
 .section-title {
     font-size: 32px;
     font-weight: 700;
-    color: #000000;
+    color: white;
     margin-top: 40px;
     margin-bottom: 20px;
 }
@@ -131,7 +136,7 @@ div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {
 .project-category {
     font-size: 24px;
     font-weight: 700;
-    color: #000000;
+    color: white;
     margin-bottom: 15px;
 }
 
@@ -148,44 +153,54 @@ div[data-testid="stSidebar"] .st-radio [role="radio"][aria-checked="true"] {
     width: 100% !important;
     text-align: center !important;
     margin-bottom: 10px !important;
+    color: white !important;
+    background-color: rgba(0,0,0,0.6) !important;
+    border: none !important;
+    transition: background-color 0.3s ease;
+}
+
+.project-button button:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+    color: white !important;
+    cursor: pointer;
 }
 
 /* CONTENT CARD WITH HOVER EFFECT */
 .hover-card {
     padding: 18px;
     border-radius: 10px;
-    background-color: #E6E6E6;
+    background-color: rgba(0,0,0,0.6);
     border: 1px solid #999999;
-    color: #000000;
+    color: white;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+    white-space: pre-line; /* preserve line breaks */
 }
 .hover-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-    background-color: #CCCCCC;
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 /* BUTTON LINKS */
 .link-btn a {
     padding: 8px 15px;
     margin-right: 10px;
-    background-color: #000000;
-    color: white !important;
+    background-color: white;
+    color: black !important;
     border-radius: 6px;
     text-decoration: none;
     font-size: 15px;
-    border: 1px solid #000000;
+    border: 1px solid white;
     transition: 0.3s;
 }
 .link-btn a:hover {
-    background-color: white;
-    color: black !important;
-    border-color: black;
+    background-color: black;
+    color: white !important;
+    border-color: white;
 }
 
-/* TEXT COLOR - BLACK ON GREEN */
+/* TEXT COLOR - WHITE FOR BODY */
 .stMarkdown, .stWrite, .stText {
-    color: #000000 !important;
+    color: white !important;
 }
 
 </style>
