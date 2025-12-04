@@ -42,12 +42,25 @@ body, [data-testid="stAppViewContainer"] {
 }
 
 /* ---------------------- SIDEBAR ---------------------- */
-section[data-testid="stSidebar"] {
-    background-color: #FFFFFF !important;
-    padding: 25px 20px;
+
+/* Narrower sidebar width (default is ~300px, here ~220px) */
+.css-1d391kg {
+    width: 220px !important;
 }
 
-/* SIDEBAR TITLE */
+/* Sidebar background: Light grey */
+section[data-testid="stSidebar"] {
+    background-color: #F0F0F0 !important;  /* light grey */
+    padding: 25px 20px;
+    overflow-y: hidden;  /* Hide scrollbar */
+}
+
+/* Remove vertical scrollbar from sidebar */
+section[data-testid="stSidebar"]::-webkit-scrollbar {
+    display: none;
+}
+
+/* Sidebar title */
 .sidebar-title {
     font-size: 28px;
     font-weight: 800;
