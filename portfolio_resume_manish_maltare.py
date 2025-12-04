@@ -202,3 +202,11 @@ def load_links():
         "github_deploy": re.findall(r"GitHub Deployment.*?:-(.*?)(?=App Deployment)", data, re.S),
         "app_links": re.findall(r"App Deployment.*?:-(.*?)(?=YouTube)", data, re.S),
         "youtube": re.findall(r"YouTube.*?:-(.*?)(?=Resume)", data, re.S),
+        "resume": re.findall(r"Resume Link.*?:(.*)", data, re.S)
+    }
+
+links = load_links()
+
+# ---------------------------- PROJECT FUNCTIONS ----------------------------
+def extract_project_section(project_name):
+    pattern = rf"{project_name}(.*?)(?=[A-Z ]{{3
