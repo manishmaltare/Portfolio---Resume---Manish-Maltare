@@ -71,20 +71,17 @@ st.markdown("""
     color:#FFD700;
 }
 
-/* Sidebar Header Text (MODIFIED: Black color, Increased size, TOP of sidebar) */
+/* Sidebar Header Text (MODIFIED: Color Black, Size Default) */
 .sidebar-header-new {
     text-align: center;
     width: 100%;
-    font-weight: 800; /* Increased font weight for better visibility */
+    font-weight: bold;
     color: #000000; /* Changed color to black */
     margin-bottom: 20px;
-    font-size: 20px; /* Increased font size */
+    font-size: 16px; /* Kept at default size */
     padding-top: 20px;
-    /* Adding a light background so black text is visible on the dark background */
-    background-color: rgba(255, 255, 255, 0.9); 
-    padding-bottom: 5px;
-    margin-right: -20px; /* Corrects alignment issue caused by padding/margins in streamlit sidebar */
-    margin-left: -20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Added for better contrast */
+    border-radius: 5px;
 }
 
 /* Increase font size for sidebar radio options (Navigation) */
@@ -320,7 +317,7 @@ def render_project_details(project_name):
 
 # ---------------------------- SIDEBAR ----------------------------
 
-# 1. Sidebar Title/Header (TOP, Increased Size, Black Color)
+# 1. Sidebar Title/Header (MOVED TO TOP)
 st.sidebar.markdown(
     """
     <div class="sidebar-header-new">
