@@ -47,21 +47,6 @@ st.markdown("""
     color: #000 !important;
 }
 
-/* Download button styling (Resume) */
-button[data-testid="stDownloadButton"] {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 6px !important;
-    font-weight: 600 !important;
-    padding: 8px 12px !important;
-    transition: 0.3s;
-}
-button[data-testid="stDownloadButton"]:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: black !important;
-}
-
 /* Top navigation ribbon */
 .top-nav {
     width:100%;
@@ -88,31 +73,21 @@ button[data-testid="stDownloadButton"]:hover {
     color:#FFD700;
 }
 
+/* Sidebar footer text */
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
 /* Main content container padding */
 .block-container {
-    padding-top:140px !important; /* to avoid overlapping nav */
+    padding-top:90px !important; /* to avoid overlapping nav */
     padding-left:150px !important;
     padding-right:150px !important;
     color: white !important;
-}
-
-/* Digital Portfolio text below nav */
-.top-nav-text {
-    text-align:center;
-    margin-top:10px;
-    margin-bottom:20px;
-}
-.top-nav-text h2 {
-    margin:0;
-    font-size:24px;
-    font-weight:800;
-    color:#FFD700;
-}
-.top-nav-text h3 {
-    margin:0;
-    font-size:20px;
-    font-weight:700;
-    color:#FFFECB;
 }
 
 /* Titles */
@@ -158,6 +133,37 @@ button[data-testid="stDownloadButton"]:hover {
 .grid-column {
     flex: 1;
 }
+
+/* Style all primary buttons like project buttons (light transparent) */
+button[kind="primary"] {
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-radius:6px !important;
+    font-weight:600 !important;
+    border: none !important;
+}
+button[kind="primary"]:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+    color: black !important;
+}
+
+/* Make the resume download button box completely transparent */
+div[data-testid="stDownloadButton"] {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+div[data-testid="stDownloadButton"] button {
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-radius:6px !important;
+    font-weight:600 !important;
+}
+
+div[data-testid="stDownloadButton"] button:hover {
+    background-color: rgba(255,255,255,0.3) !important;
+    color: black !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -168,11 +174,6 @@ st.markdown("""
     <a href="#projects">Projects</a>
     <a href="#resume">Resume Download</a>
     <a href="#contact">Contact Me</a>
-</div>
-
-<div class="top-nav-text">
-    <h2>Digital Portfolio</h2>
-    <h3>Manish Maltare</h3>
 </div>
 """, unsafe_allow_html=True)
 
@@ -221,13 +222,29 @@ def get_project_links(project_name):
     return result
 
 def render_project_details(project_name):
-    st.markdown(f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='hover-card'><h3>{project_name}</h3><p>{extract_project_section(project_name)}</p></div>",
+        unsafe_allow_html=True
+    )
     proj_links = get_project_links(project_name)
     if proj_links:
         for title, url in proj_links.items():
-            st.markdown(f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>", unsafe_allow_html=True)
+            st.markdown(
+                f"<a href='{url}' target='_blank'><button class='stButton'>{title}</button></a>",
+                unsafe_allow_html=True
+            )
 
-# ---------------------------- SIDEBAR (Hidden) ----------------------------
+# ---------------------------- SIDEBAR ----------------------------
+st.sidebar.markdown(
+    """
+    <div class="sidebar-footer">
+        Digital Portfolio<br>
+        Manish Maltare
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 menu = st.sidebar.radio(
     "Navigation",
     ["About Me", "Projects", "Resume Download", "Contact Me"]
@@ -247,24 +264,24 @@ elif menu == "Projects":
 
     selected_project = st.session_state.get("selected_project", None)
 
-    # Grid columns
     col1, col2 = st.columns(2)
 
     with col1:
         st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
-        if st.button("NLP - Sentiment Analysis"): selected_project = "NLP - Sentiment Analysis"
-        if st.button("Logistic Regression - Titanic Survival Prediction"): selected_project = "Logistic Regression - Titanic Survival Prediction"
+        if st.button("NLP - Sentiment Analysis"):
+            st.session_state["selected_project"] = "NLP - Sentiment Analysis"
+        if st.button("Logistic Regression - Titanic Survival Prediction"):
+            st.session_state["selected_project"] = "Logistic Regression - Titanic Survival Prediction"
 
     with col2:
         st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
-        if st.button("Solar Panel Regression"): selected_project = "Solar Panel Regression"
-        if st.button("Machine Learning Insights into GDP Drivers"): selected_project = "Machine Learning Insights into GDP Drivers"
+        if st.button("Solar Panel Regression"):
+            st.session_state["selected_project"] = "Solar Panel Regression"
+        if st.button("Machine Learning Insights into GDP Drivers"):
+            st.session_state["selected_project"] = "Machine Learning Insights into GDP Drivers"
 
-    st.session_state["selected_project"] = selected_project
-
-    # Show project details
-    if selected_project:
-        render_project_details(selected_project)
+    if st.session_state.get("selected_project"):
+        render_project_details(st.session_state["selected_project"])
 
 elif menu == "Resume Download":
     st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
@@ -274,7 +291,8 @@ elif menu == "Resume Download":
             label="📄 Download Resume (PDF)",
             data=f,
             file_name="Manish_Maltare_Resume.pdf",
-            mime="application/pdf"
+            mime="application/pdf",
+            key="resume_button"
         )
 
 elif menu == "Contact Me":
