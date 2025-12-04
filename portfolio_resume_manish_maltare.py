@@ -41,15 +41,15 @@ section[data-testid="stSidebar"] {
 .sidebar-title {
     font-size: 28px;
     font-weight: 800;
-    color: #FFD700; /* Vibrant golden yellow */
+    color: #FFFFFF; /* White for contrast */
     margin-bottom: 30px;
 }
 
-/* Sidebar menu options - vibrant color */
+/* Sidebar menu options - light vibrant color */
 div[data-testid="stSidebar"] label, 
 div[data-testid="stSidebar"] span,
 div[data-testid="stSidebar"] .stRadio label {
-    color: #00CED1 !important; /* turquoise color */
+    color: #FFFECB !important; /* Light vibrant yellow */
     font-weight: 600 !important;
     font-size: 16px;
 }
@@ -181,7 +181,7 @@ def render_project_details(project_name):
 
 # ---------------------------- SIDEBAR ----------------------------
 st.sidebar.markdown(
-    "<div class='sidebar-title'>Manish Maltare<br>Portfolio</div>",
+    "<div class='sidebar-title'>Manish Maltare<br>Digital Portfolio</div>",
     unsafe_allow_html=True
 )
 
