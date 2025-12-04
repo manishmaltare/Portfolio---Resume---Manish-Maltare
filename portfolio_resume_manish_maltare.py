@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-"""Manish Maltare - Portfolio with Top Navigation and Transparent Buttons"""
-
 import streamlit as st
 import docx
 import re
