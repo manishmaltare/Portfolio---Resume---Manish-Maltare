@@ -8,6 +8,7 @@ st.set_page_config(
     page_title="Manish Maltare - Digital Portfolio",
     layout="wide"
 )
+
 # ---------------------------- CUSTOM CSS ----------------------------
 st.markdown("""
 <style>
@@ -15,165 +16,165 @@ st.markdown("""
 
 /* GLOBAL FONT */
 * {
-    font-family: 'Open Sans', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 /* PAGE BACKGROUND IMAGE */
 [data-testid="stAppViewContainer"] {
-    background-image: url("https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/5072609.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: white !important;
+    background-image: url("https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/5072609.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white !important;
 }
 
 /* Remove default button styling */
 .stButton>button {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border: none !important;
-    padding: 8px 12px !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 .stButton>button:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: #000 !important;
+    background-color: rgba(255,255,255,0.3) !important;
+    color: #000 !important;
 }
 
 /* Top navigation ribbon */
 .top-nav {
-    width:100%;
-    background-color: rgba(0,0,0,0.5);
-    padding:15px 0px;
-    display:flex;
-    justify-content:center;
-    gap:50px;
-    position:fixed;
-    top:0;
-    z-index:100;
-    border-radius:0 0 10px 10px;
+    width:100%;
+    background-color: rgba(0,0,0,0.5);
+    padding:15px 0px;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    position:fixed;
+    top:0;
+    z-index:100;
+    border-radius:0 0 10px 10px;
 }
 
 /* Top nav links */
 .top-nav a {
-    color: #FFFECB;
-    text-decoration: none;
-    font-weight:700;
-    font-size:22px;
-    transition:0.3s;
+    color: #FFFECB;
+    text-decoration: none;
+    font-weight:700;
+    font-size:22px;
+    transition:0.3s;
 }
 .top-nav a:hover {
-    color:#FFD700;
+    color:#FFD700;
 }
 
 /* Sidebar footer text */
 .sidebar-footer {
-    position: absolute;
-    bottom: 20px;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
 }
 
 /* Main content container padding */
 .block-container {
-    padding-top:90px !important;
-    padding-left:150px !important;
-    padding-right:150px !important;
-    color: white !important;
+    padding-top:90px !important;
+    padding-left:150px !important;
+    padding-right:150px !important;
+    color: white !important;
 }
 
 /* Titles */
 .main-title {
-    font-size: 55px;
-    font-weight: 900;
-    color: white;
-    text-align: center;
-    margin-top: 10px;
+    font-size: 55px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .sub-title-tagline {
-    font-size: 28px;
-    color: white;
-    text-align: center;
-    margin-bottom: 40px;
+    font-size: 28px;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .section-title {
-    font-size: 32px;
-    color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Project details card */
 .hover-card {
-    padding: 15px;
-    border-radius: 10px;
-    background-color: rgba(0,0,0,0.6);
-    color: white;
-    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    margin-top: 20px;
 }
 .hover-card h3 {
-    margin-top: 0;
+    margin-top: 0;
 }
 
 /* Grid layout */
 .grid-container {
-    display: flex;
-    gap: 50px;
+    display: flex;
+    gap: 50px;
 }
 .grid-column {
-    flex: 1;
+    flex: 1;
 }
 
 /* Make resume button transparent */
 div[data-testid="stDownloadButton"] button {
-    background-color: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border-radius:6px !important;
-    font-weight:600 !important;
+    background-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-radius:6px !important;
+    font-weight:600 !important;
 }
 div[data-testid="stDownloadButton"] button:hover {
-    background-color: rgba(255,255,255,0.3) !important;
-    color: black !important;
+    background-color: rgba(255,255,255,0.3) !important;
+    color: black !important;
 }
 
 /* ------------------ CIRCULAR ICON BUTTONS ------------------ */
 .circle-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 25px;
-    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+    flex-wrap: wrap;
 }
 
 /* Semi-transparent black background for circle buttons */
 .circle-icon {
-    width: 120px;
-    height: 120px;
-    background: rgba(0,0,0,0.7); /* Applied Semi-transparent black background */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 700;
-    color: white;
-    transition: 0.3s;
-    border: 2px solid rgba(255,255,255,0.4);
-    padding: 10px;
+    width: 120px;
+    height: 120px;
+    background: rgba(0,0,0,0.7); /* Applied Semi-transparent black background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    transition: 0.3s;
+    border: 2px solid rgba(255,255,255,0.4);
+    padding: 10px;
 }
 .circle-icon:hover {
-    background: rgba(0,0,0,0.85); /* Darker semi-transparent black on hover */
-    color: white; /* Kept text white for contrast */
-    transform: scale(1.08);
-    border-color: white;
+    background: rgba(0,0,0,0.85); /* Darker semi-transparent black on hover */
+    color: white; /* Kept text white for contrast */
+    transform: scale(1.08);
+    border-color: white;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -181,10 +182,10 @@ div[data-testid="stDownloadButton"] button:hover {
 # ---------------------------- TOP NAVIGATION ----------------------------
 st.markdown("""
 <div class="top-nav">
-    <a href="#about">About Me</a>
-    <a href="#projects">Projects</a>
-    <a href="#resume">Resume Download</a>
-    <a href="#contact">Contact Me</a>
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume Download</a>
+    <a href="#contact">Contact Me</a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -305,80 +306,80 @@ def render_project_details(project_name):
 
 # ---------------------------- SIDEBAR ----------------------------
 st.sidebar.markdown(
-    """
-    <div class="sidebar-footer">
-        Digital Portfolio<br>
-        Manish Maltare
-    </div>
-    """,
-    unsafe_allow_html=True
+    """
+    <div class="sidebar-footer">
+        Digital Portfolio<br>
+        Manish Maltare
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 menu = st.sidebar.radio(
-    "Navigation",
-    ["About Me", "Projects", "Resume Download", "Contact Me"]
+    "Navigation",
+    ["About Me", "Projects", "Resume Download", "Contact Me"]
 )
 
 # ---------------------------- PAGE ROUTING ----------------------------
 if menu == "About Me":
-    st.markdown('<a id="about"></a>', unsafe_allow_html=True)
-    st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
-    st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
-    st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
+    st.markdown('<a id="about"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='main-title'>Manish Maltare</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
 
-    st.markdown(
-        f"""
-        <div style="
-            background-color: rgba(0,0,0,0.6);
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-            line-height: 1.6;
-        ">
-            {about_text.replace('\n','<br>') if about_text else "About content not found."}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown(
+        f"""
+        <div style="
+            background-color: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            line-height: 1.6;
+        ">
+            {about_text.replace('\n','<br>') if about_text else "About content not found."}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 elif menu == "Projects":
-    st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
-    st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
+    st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>Projects</div>", unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
 
-    with col1:
-        st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
-        if st.button("NLP - Sentiment Analysis"):
-            st.session_state["selected_project"] = "NLP - Sentiment Analysis"
-        if st.button("Logistic Regression - Titanic Survival Prediction"):
-            st.session_state["selected_project"] = "Logistic Regression - Titanic Survival Prediction"
+    with col1:
+        st.markdown("<h3>Classification</h3>", unsafe_allow_html=True)
+        if st.button("NLP - Sentiment Analysis"):
+            st.session_state["selected_project"] = "NLP - Sentiment Analysis"
+        if st.button("Logistic Regression - Titanic Survival Prediction"):
+            st.session_state["selected_project"] = "Logistic Regression - Titanic Survival Prediction"
 
-    with col2:
-        st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
-        if st.button("Solar Panel Regression"):
-            st.session_state["selected_project"] = "Solar Panel Regression"
-        if st.button("Machine Learning Insights into GDP Drivers"):
-            st.session_state["selected_project"] = "Machine Learning Insights into GDP Drivers"
+    with col2:
+        st.markdown("<h3>Regression</h3>", unsafe_allow_html=True)
+        if st.button("Solar Panel Regression"):
+            st.session_state["selected_project"] = "Solar Panel Regression"
+        if st.button("Machine Learning Insights into GDP Drivers"):
+            st.session_state["selected_project"] = "Machine Learning Insights into GDP Drivers"
 
-    if st.session_state.get("selected_project"):
-        render_project_details(st.session_state["selected_project"])
+    if st.session_state.get("selected_project"):
+        render_project_details(st.session_state["selected_project"])
 
 elif menu == "Resume Download":
-    st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
-    st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
-    with open("Resume - Manish Maltare - final.pdf", "rb") as f:
-        st.download_button(
-            label="📄 Download Resume (PDF)",
-            data=f,
-            file_name="Manish_Maltare_Resume.pdf",
-            mime="application/pdf",
-            key="resume_button"
-        )
+    st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
+    with open("Resume - Manish Maltare - final.pdf", "rb") as f:
+        st.download_button(
+            label="📄 Download Resume (PDF)",
+            data=f,
+            file_name="Manish_Maltare_Resume.pdf",
+            mime="application/pdf",
+            key="resume_button"
+        )
 
 elif menu == "Contact Me":
-    st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
-    st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
-    st.write("📧 **Email:** manishmaltare@gmail.com")
-    st.write("📞 **Phone:** +91 9589945630")
-    st.write("📍 **Address:** Keshavnagar, Pune")
+    st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
+    st.markdown("<div class='section-title'>Contact Me</div>", unsafe_allow_html=True)
+    st.write("📧 **Email:** manishmaltare@gmail.com")
+    st.write("📞 **Phone:** +91 9589945630")
+    st.write("📍 **Address:** Keshavnagar, Pune")
