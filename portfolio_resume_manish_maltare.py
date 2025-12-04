@@ -217,13 +217,12 @@ def load_links():
 links = load_links()
 
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
-# ---------------------------- PROJECT FUNCTIONS ----------------------------
 def get_project_links(project_name):
     result = {}
     mapping = {
         "ppt": "PPT",
-        "github_files": "GitHub Files",
-        "github_deploy": "GitHub Deployment Files",
+        "github_files": "GitHub - Script",
+        "github_deploy": "GitHub - Deployment",
         "app_links": "App Link",
         "youtube": "YouTube Video"
     }
@@ -233,6 +232,23 @@ def get_project_links(project_name):
         if match:
             result[label] = match[0]
     return result
+
+def render_circle_links(project_name):
+    proj_links = get_project_links(project_name)
+    if not proj_links:
+        return
+
+    # build circular icons row
+    html = '<div class="circle-container">'
+    for label, url in proj_links.items():
+        html += f"""
+        <a href="{url}" target="_blank">
+            <div class="circle-icon">{label}</div>
+        </a>
+        """
+    html += "</div>"
+
+    st.markdown(html, unsafe_allow_html=True)
 
 def render_docx_block(title, body_html, project_name=None):
     st.markdown(
@@ -248,13 +264,7 @@ def render_docx_block(title, body_html, project_name=None):
         unsafe_allow_html=True
     )
     if project_name:
-        proj_links = get_project_links(project_name)
-        if proj_links:
-            for link_title, url in proj_links.items():
-                st.markdown(
-                    f"<a href='{url}' target='_blank'><button class='stButton'>{link_title}</button></a>",
-                    unsafe_allow_html=True
-                )
+        render_circle_links(project_name)
 
 def render_project_details(project_name):
     if project_name == "NLP - Sentiment Analysis":
