@@ -197,24 +197,11 @@ def read_docx_safe(path):
 
 about_text = read_docx_safe("About Me2.docx")
 
+# keep DOCX files text-only (no HTML inside them)
 nlp_text = read_docx_safe("NLP.docx")
 logreg_text = read_docx_safe("Logistics Regression.docx")
 solar_text = read_docx_safe("solar panel regression.docx")
 ml_insights_text = read_docx_safe("Machine learning insights.docx")
-
-# ---------------------------- LOAD LINKS ----------------------------
-def load_links():
-    data = open("Links.txt", "r").read()
-    return {
-        "ppt": re.findall(r"PPTs.*?:-(.*?)(?=GitHub Files)", data, re.S),
-        "github_files": re.findall(r"GitHub Files.*?:-(.*?)(?=GitHub Deployment)", data, re.S),
-        "github_deploy": re.findall(r"GitHub Deployment.*?:-(.*?)(?=App Deployment)", data, re.S),
-        "app_links": re.findall(r"App Deployment.*?:-(.*?)(?=YouTube)", data, re.S),
-        "youtube": re.findall(r"YouTube.*?:-(.*?)(?=Resume)", data, re.S),
-        "resume": re.findall(r"Resume Link.*?:(.*)", data, re.S)
-    }
-
-links = load_links()
 
 # ---------------------------- PROJECT FUNCTIONS ----------------------------
 def render_circle_links_fixed(project_name):
@@ -310,7 +297,6 @@ def render_project_details(project_name):
             body_html,
             project_name
         )
-
 
 # ---------------------------- SIDEBAR ----------------------------
 st.sidebar.markdown(
