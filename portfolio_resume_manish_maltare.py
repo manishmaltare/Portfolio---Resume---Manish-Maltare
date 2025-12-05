@@ -3,6 +3,10 @@ import docx
 import re
 import os
 
+git add portfolio_resume_manish_maltare.py
+git commit -m "Final removal of Image.open('assets/profile.jpg') to fix deployment error"
+git push
+
 # ---------------------------- PAGE CONFIG ----------------------------
 st.set_page_config(
     page_title="Manish Maltare - Digital Portfolio",
