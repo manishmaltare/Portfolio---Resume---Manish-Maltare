@@ -5,7 +5,7 @@ import os
 
 # ---------------------------- PAGE CONFIG ----------------------------
 st.set_page_config(
-    page_title="Manish Maltare - Digital Portfolio",
+    page_title="Manish Maltare | Data Science & Analytics Portfolio", # <--- UPDATED TITLE HERE
     layout="wide"
 )
 
