@@ -227,14 +227,14 @@ def render_circle_links_fixed(project_name):
         },
         "Logistic Regression - Titanic Survival Prediction": {
             # "Presentation" link removed as requested
-            "GitHub - Script": "https://github.com/manishmaltare/Manish-Maltare/blob/main/RESUME_Logistic_Regression_Assignment.ipynb", # <--- UPDATED LINK
-            "GitHub - Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/final_pickle_of_assignment_logisticregression_deployment_final.py", # <--- UPDATED LINK
+            "GitHub - Script": "https://github.com/manishmaltare/Manish-Maltare/blob/main/RESUME_Logistic_Regression_Assignment.ipynb", # Link updated
+            "GitHub - Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/final_pickle_of_assignment_logisticregression_deployment_final.py", # Link updated
             "App Link": "https://manish-maltare-8pw78deodbfyqewds8uere.streamlit.app/",
         },
         "Solar Panel Regression": {
             "Presentation": "https://drive.google.com/file/d/1unMOirI9oFjn2lKJH97sVE4985Gp0mea/view?usp=sharing",
             "GitHub - Script": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
-            "GitHub - Deployment": "https://github.com/manishmaltare/Solar-Panel-Regression-1", # <--- UPDATED LINK (confirmed)
+            "GitHub - Deployment": "https://github.com/manishmaltare/Solar-Panel-Regression-1/blob/main/resume_solar_panel_regression.py", # Link updated
             "App Link": "https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/",
         },
         "Machine Learning Insights into GDP Drivers": {
