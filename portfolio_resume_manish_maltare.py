@@ -5,8 +5,8 @@ import os
 
 # ---------------------------- PAGE CONFIG ----------------------------
 st.set_page_config(
-    page_title="Manish Maltare - Digital Portfolio",
-    layout="wide"
+    page_title="Manish Maltare - Digital Portfolio", # <--- Ensure this line starts with 4 regular spaces (or whatever indentation you use)
+    layout="wide"
 )
 
 # ---------------------------- CUSTOM CSS ----------------------------
