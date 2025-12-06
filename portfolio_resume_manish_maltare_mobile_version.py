@@ -220,6 +220,7 @@ div[data-testid="stDownloadButton"] button:hover {
 def read_docx_safe(path):
     if not os.path.exists(path):
         return ""
+    # Note: The app will require these .docx files to run successfully.
     doc = docx.Document(path)
     return "\n".join(p.text for p in doc.paragraphs)
 
@@ -401,7 +402,7 @@ elif menu == "Projects":
             st.session_state["selected_project"] = "Logistic Regression - Titanic Survival Prediction"
 
     with col2:
-        st.markdown("<h3>Regression </h3>", unsafe_allow_html=True)
+        st.markdown("<h3>Regression </h3>", unsafe_allow_html=True)
         if st.button("Solar Panel Regression"):
             st.session_state["selected_project"] = "Solar Panel Regression"
         if st.button("Machine Learning Insights into GDP Drivers"):
@@ -413,6 +414,7 @@ elif menu == "Projects":
 elif menu == "Resume":
     st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
+    # Note: The app will require "Resume - Manish Maltare - final.pdf" to run successfully.
     with open("Resume - Manish Maltare - final.pdf", "rb") as f:
         st.download_button(
             label="📄 Download Resume (PDF)",
