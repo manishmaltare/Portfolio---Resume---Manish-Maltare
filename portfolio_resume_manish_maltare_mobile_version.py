@@ -24,7 +24,6 @@ st.markdown("""
     background-image: url("https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/5072609.jpg");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     color: white !important;
 }
 
