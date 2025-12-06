@@ -329,6 +329,10 @@ if menu == "About Me":
     st.markdown("<div class='sub-title-tagline'>Digital Portfolio</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-title'>About Me</div>", unsafe_allow_html=True)
 
+    # prepare about text (fallback if file missing)
+    about_html = about_text.replace('\n','<br>') if about_text else "About content not found."
+
+    # Render About card AND embed LinkedIn icon inside it (with stronger inline styles)
     st.markdown(
         f"""
         <div style="
@@ -337,8 +341,33 @@ if menu == "About Me":
             border-radius: 10px;
             color: white;
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
         ">
-            {about_text.replace('\n','<br>')}
+            {about_html}
+            <!-- LinkedIn button (placed inside the card so it is visible) -->
+            <div style="text-align:center; margin-top:18px;">
+                <a href="https://www.linkedin.com/in/manishmaltare" target="_blank" style="text-decoration:none;">
+                    <div class="linkedin-circle" style="
+                        display:inline-block;
+                        width:120px;
+                        height:120px;
+                        border-radius:50%;
+                        background: rgba(0,0,0,0.7);
+                        border:2px solid rgba(255,255,255,0.4);
+                        align-items:center;
+                        justify-content:center;
+                        display:flex;
+                        vertical-align:middle;
+                        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+                    ">
+                        <!-- Inline image with explicit sizing to avoid external-css conflicts -->
+                        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                             alt="LinkedIn"
+                             style="width:56px; height:56px; display:block; margin:auto;"/>
+                    </div>
+                </a>
+            </div>
         </div>
         """,
         unsafe_allow_html=True
