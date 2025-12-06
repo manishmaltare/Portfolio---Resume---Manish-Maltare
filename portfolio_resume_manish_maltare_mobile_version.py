@@ -5,8 +5,8 @@ import os
 
 # ---------------------------- PAGE CONFIG ----------------------------
 st.set_page_config(
-    page_title="Manish Maltare | Data Science & Analytics Portfolio",
-    layout="wide" # Keeps the wide layout for desktop views
+    page_title="Manish Maltare - Digital Portfolio",
+    layout="wide"
 )
 
 # ---------------------------- CUSTOM CSS ----------------------------
