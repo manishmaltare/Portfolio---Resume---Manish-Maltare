@@ -214,9 +214,8 @@ def read_docx_safe(path):
     doc = docx.Document(path)
     return "\n".join(p.text for p in doc.paragraphs)
 
+# NOTE: These files must exist in the directory for the app to work correctly.
 about_text = read_docx_safe("About Me2.docx")
-
-# keep DOCX files text-only (no HTML inside them)
 nlp_text = read_docx_safe("NLP.docx")
 logreg_text = read_docx_safe("Logistics Regression.docx")
 solar_text = read_docx_safe("solar panel regression.docx")
@@ -404,14 +403,19 @@ elif menu == "Projects":
 elif menu == "Resume":
     st.markdown('<a id="resume"></a>', unsafe_allow_html=True)
     st.markdown("<div class='section-title'>Download Resume</div>", unsafe_allow_html=True)
-    with open("Resume - Manish Maltare - final.pdf", "rb") as f:
-        st.download_button(
-            label="📄 Download Resume (PDF)",
-            data=f,
-            file_name="Manish_Maltare_Resume.pdf",
-            mime="application/pdf",
-            key="resume_button"
-        )
+    # NOTE: The PDF file 'Resume - Manish Maltare - final.pdf' must be available 
+    # in the same directory for this button to work.
+    try:
+        with open("Resume - Manish Maltare - final.pdf", "rb") as f:
+            st.download_button(
+                label="📄 Download Resume (PDF)",
+                data=f,
+                file_name="Manish_Maltare_Resume.pdf",
+                mime="application/pdf",
+                key="resume_button"
+            )
+    except FileNotFoundError:
+        st.warning("Resume file (Resume - Manish Maltare - final.pdf) not found.")
 
 elif menu == "Contact Me":
     st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
