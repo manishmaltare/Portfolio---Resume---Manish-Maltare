@@ -156,6 +156,7 @@ div[data-testid="stDownloadButton"] button:hover {
     background: rgba(0,0,0,0.7); /* Applied Semi-transparent black background */
     border-radius: 50%;
     display: flex;
+    flex-direction: column; /* Added for better icon/text stacking */
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -165,6 +166,7 @@ div[data-testid="stDownloadButton"] button:hover {
     transition: 0.3s;
     border: 2px solid rgba(255,255,255,0.4);
     padding: 10px;
+    text-decoration: none; /* Ensure link decoration is removed for icons */
 }
 .circle-icon:hover {
     background: rgba(0,0,0,0.85); /* Darker semi-transparent black on hover */
@@ -366,12 +368,28 @@ if menu == "About Me":
             border-radius: 10px;
             color: white;
             line-height: 1.6;
+            margin-bottom: 20px; /* Add some space before the new button */
         ">
             {about_text.replace('\n','<br>') if about_text else "About content not found."}
         </div>
         """,
         unsafe_allow_html=True
     )
+    
+    # NEW: Circular LinkedIn Icon
+    st.markdown(
+        """
+        <div class="circle-container" style="justify-content: center; margin-top: 10px; margin-bottom: 30px;">
+            <a href="https://www.linkedin.com/in/manishmaltare" target="_blank" style="text-decoration:none;">
+                <div class="circle-icon" style="width: 150px; height: 50px; border-color: #0077B5; background: rgba(0, 119, 181, 0.7); font-size: 18px; padding: 5px;">
+                    <span style="font-size: 24px; margin-right: 5px;">&#x1F517;</span>LinkedIn
+                </div>
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 
 elif menu == "Projects":
     st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
