@@ -91,6 +91,9 @@ div[data-testid="stSidebar"] div[role="radiogroup"] label {
     color: white;
     text-align: center;
     margin-top: 10px;
+    /* Crucial: Prevent single-letter wrapping on narrow screens */
+    white-space: nowrap; 
+    overflow: hidden; 
 }
 
 .sub-title-tagline {
@@ -188,6 +191,9 @@ div[data-testid="stDownloadButton"] button:hover {
     /* Titles - MOBILE SIZES */
     .main-title {
         font-size: 38px;
+        /* Reverting text flow to prevent single-letter stacking */
+        white-space: normal !important;
+        word-break: break-word;
     }
 
     .sub-title-tagline {
@@ -209,7 +215,7 @@ div[data-testid="stDownloadButton"] button:hover {
         font-size: 13px;
     }
 
-    /* 🌟 NEW: Force all buttons to be full-width on mobile for easy tapping (UX) */
+    /* Force all buttons to be full-width on mobile for easy tapping (UX) */
     div[data-testid="stColumn"] .stButton {
         width: 100% !important;
         margin-bottom: 10px; /* Spacing between stacked buttons */
@@ -228,7 +234,7 @@ div[data-testid="stDownloadButton"] button:hover {
 
 # ---------------------------- LOAD TEXT FILES ----------------------------
 def read_docx_safe(path):
-    # Mocking the docx reading for execution environment without local files
+    # Mocking the docx reading for execution environment without local files
     if path == "About Me2.docx":
         return "I am a dedicated Data Science and Analytics professional with a passion for transforming complex data into actionable insights. My expertise lies in Python, Machine Learning, NLP, and deploying models using Streamlit. I thrive on challenges and aim to deliver data-driven solutions that significantly impact business outcomes."
     if path == "NLP.docx":
