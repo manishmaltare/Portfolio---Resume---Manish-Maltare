@@ -2,13 +2,10 @@ import streamlit as st
 import docx
 import os
 
-# ---------------------------- PAGE CONFIG ----------------------------
-st.set_page_config(
-    page_title="Manish Maltare | Data Science Portfolio",
-    layout="wide"
-)
+# ---------------- PAGE CONFIG ----------------
+st.set_page_config(page_title="Portfolio", layout="wide")
 
-# ---------------------------- CSS ----------------------------
+# ---------------- CSS ----------------
 st.markdown("""
 <style>
 
@@ -17,61 +14,71 @@ st.markdown("""
     background-image: url("https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/5072609.jpg");
     background-size: cover;
     background-attachment: fixed;
-}
-
-/* BUTTON FIX */
-.stButton>button, div[data-testid="stDownloadButton"] button {
-    background-color: rgba(0,0,0,0.6) !important;
     color: white !important;
-    border-radius: 6px;
 }
 
-/* FOOTER FIXED */
+/* FORCE TEXT WHITE */
+html, body, [class*="css"]  {
+    color: white !important;
+}
+
+/* HEADINGS */
+h1, h2, h3 {
+    font-weight: 800 !important;
+    color: white !important;
+}
+
+/* CARD */
+.card {
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* LINKS PANEL (RIGHT SIDE) */
+.link-box {
+    background: rgba(0,0,0,0.7);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* LINK BUTTON STYLE */
+.link-btn {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.link-btn:hover {
+    background: rgba(255,255,255,0.3);
+    color: black;
+}
+
+/* RESUME BUTTON FIX */
+div[data-testid="stDownloadButton"] button {
+    background-color: rgba(0,0,0,0.7) !important;
+    color: white !important;
+}
+
+/* FOOTER */
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    background: rgba(0,0,0,0.7);
     text-align: center;
-    background: rgba(0,0,0,0.7);
-    color: white;
     padding: 10px;
-    font-weight: 600;
+    font-weight: bold;
 }
-
-/* CARD */
-.hover-card {
-    padding: 15px;
-    border-radius: 10px;
-    background: rgba(0,0,0,0.6);
-    margin-top: 20px;
-    color: white;
-}
-
-/* LINK BUTTONS */
-.circle-container {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.circle-icon {
-    width: 120px;
-    height: 120px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-weight:bold;
-    text-align:center;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------- DOCX ----------------------------
+# ---------------- DOCX ----------------
 def read_docx(path):
     if not os.path.exists(path):
         return ""
@@ -84,114 +91,102 @@ solar = read_docx("solar panel regression.docx")
 gdp = read_docx("Machine learning insights.docx")
 rec = read_docx("Online Course Recommendations.docx")
 
-# ---------------------------- LINKS ----------------------------
-def render_links(name):
-
-    links = {
-
+# ---------------- LINKS ----------------
+def get_links(name):
+    return {
         "Machine Learning Insights into GDP Drivers": {
             "Presentation": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing",
             "GitHub Script": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
             "GitHub Deployment": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
-            "YouTube": "https://youtu.be/y6vTDqyEPdw?si=9x0Zb8B-2KPosX0R"
+            "YouTube": "https://youtu.be/y6vTDqyEPdw"
         },
-
         "Solar Panel Regression": {
-            "Presentation": "https://drive.google.com/file/d/1unMOirI9oFjn2lKJH97sVE4985Gp0mea/view?usp=sharing",
+            "Presentation": "https://drive.google.com/file/d/1unMOirI9oFjn2lKJH97sVE4985Gp0mea/view",
             "GitHub Script": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
             "GitHub Deployment": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
             "App": "https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/"
         },
-
         "NLP - Sentiment Analysis": {
-            "Presentation": "https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view?usp=sharing",
+            "Presentation": "https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view",
             "GitHub Script": "https://github.com/manishmaltare/NLP---Sentiment-Analysis",
-            "GitHub Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment%20-%20Sentiment%20Analysis%20-%20Group%201.py",
+            "GitHub Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment",
             "App": "https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/"
         },
-
         "Online Course Recommendation System": {
-            "Presentation": "https://drive.google.com/file/d/1j8fGEzcJEIPPGAcSLznOcoRYOj2cWVPS/view?usp=drive_link",
+            "Presentation": "https://drive.google.com/file/d/1j8fGEzcJEIPPGAcSLznOcoRYOj2cWVPS/view",
             "GitHub Script": "https://github.com/manishmaltare/Online-Class-Recommendations/blob/main/online_course_recommendation_file.ipynb"
         }
-    }
+    }[name]
 
-    html = '<div class="circle-container">'
-    for k,v in links[name].items():
-        html += f'<a href="{v}" target="_blank"><div class="circle-icon">{k}</div></a>'
-    html += '</div>'
-
-    st.markdown(html, unsafe_allow_html=True)
-
-# ---------------------------- PROJECT DISPLAY ----------------------------
+# ---------------- PROJECT DISPLAY ----------------
 def show_project(name, text):
 
-    st.markdown(f"<div class='hover-card'><h3>{name}</h3></div>", unsafe_allow_html=True)
+    col1, col2 = st.columns([3,1])
 
-    st.markdown(
-        f"<div class='hover-card'>{text.replace(chr(10),'<br>')}</div>",
-        unsafe_allow_html=True
-    )
+    # LEFT → TEXT
+    with col1:
+        st.markdown(f"<div class='card'><h3>{name}</h3><br>{text.replace(chr(10),'<br>')}</div>", unsafe_allow_html=True)
 
-    render_links(name)
+    # RIGHT → LINKS
+    with col2:
+        st.markdown("<div class='link-box'>", unsafe_allow_html=True)
+        for k, v in get_links(name).items():
+            st.markdown(f"<a href='{v}' target='_blank' class='link-btn'>{k}</a>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
-# ---------------------------- SIDEBAR ----------------------------
-menu = st.sidebar.radio("Navigation",
-    ["About Me","Projects","Resume","Contact Me"]
-)
+# ---------------- SIDEBAR ----------------
+menu = st.sidebar.radio("Navigation", ["About Me","Projects","Resume","Contact Me"])
 
-# ---------------------------- ABOUT ----------------------------
+# ---------------- ABOUT ----------------
 if menu == "About Me":
-    st.title("Manish Maltare")
-    st.markdown(about.replace("\n","<br>"), unsafe_allow_html=True)
+    st.markdown("## **About Me**")
+    st.markdown(f"<div class='card'>{about.replace(chr(10),'<br>')}</div>", unsafe_allow_html=True)
 
-# ---------------------------- PROJECTS ----------------------------
+# ---------------- PROJECTS ----------------
 elif menu == "Projects":
 
     col1,col2,col3 = st.columns(3)
 
     with col1:
-        st.subheader("Classification")
+        st.markdown("### **Classification**")
         if st.button("NLP - Sentiment Analysis"):
             st.session_state["p"]="NLP - Sentiment Analysis"
 
     with col2:
-        st.subheader("Regression")
+        st.markdown("### **Regression**")
         if st.button("Solar Panel Regression"):
             st.session_state["p"]="Solar Panel Regression"
         if st.button("Machine Learning Insights into GDP Drivers"):
             st.session_state["p"]="Machine Learning Insights into GDP Drivers"
 
     with col3:
-        st.subheader("Recommendation System")
+        st.markdown("### **Recommendation System**")
         if st.button("Online Course Recommendation System"):
             st.session_state["p"]="Online Course Recommendation System"
 
     if "p" in st.session_state:
-        if st.session_state["p"]=="NLP - Sentiment Analysis":
-            show_project("NLP - Sentiment Analysis", nlp)
+        mapping = {
+            "NLP - Sentiment Analysis": nlp,
+            "Solar Panel Regression": solar,
+            "Machine Learning Insights into GDP Drivers": gdp,
+            "Online Course Recommendation System": rec
+        }
+        show_project(st.session_state["p"], mapping[st.session_state["p"]])
 
-        elif st.session_state["p"]=="Solar Panel Regression":
-            show_project("Solar Panel Regression", solar)
-
-        elif st.session_state["p"]=="Machine Learning Insights into GDP Drivers":
-            show_project("Machine Learning Insights into GDP Drivers", gdp)
-
-        elif st.session_state["p"]=="Online Course Recommendation System":
-            show_project("Online Course Recommendation System", rec)
-
-# ---------------------------- RESUME ----------------------------
+# ---------------- RESUME ----------------
 elif menu == "Resume":
-    st.subheader("Download Resume")
+    st.markdown("## **Resume**")
     with open("Resume - Manish Maltare - final.pdf","rb") as f:
         st.download_button("Download Resume",f)
 
-# ---------------------------- CONTACT ----------------------------
+# ---------------- CONTACT ----------------
 elif menu == "Contact Me":
-    st.subheader("Contact Details")
-    st.write("📧 manishmaltare@gmail.com")
-    st.write("📞 +91 9589945630")
-    st.write("📍 Pune")
+    st.markdown("## **Contact Details**")
+    st.markdown("""
+    📧 manishmaltare@gmail.com  
+    📞 +91 9589945630  
+    📍 Pune
+    """)
 
-# ---------------------------- FOOTER ----------------------------
-st.markdown('<div class="footer">Created by Manish Maltare</div>', unsafe_allow_html=True)
+# ---------------- FOOTER ----------------
+st.markdown("<div class='footer'>Created by Manish Maltare</div>", unsafe_allow_html=True)
