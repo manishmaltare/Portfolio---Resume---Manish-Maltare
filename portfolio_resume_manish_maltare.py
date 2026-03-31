@@ -17,18 +17,25 @@ st.markdown("""
     color: white !important;
 }
 
-/* FORCE TEXT WHITE */
-html, body, [class*="css"]  {
+/* TEXT */
+html, body, [class*="css"] {
     color: white !important;
+}
+
+/* MAIN TITLE */
+.main-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 20px;
 }
 
 /* HEADINGS */
 h1, h2, h3 {
     font-weight: 800 !important;
-    color: white !important;
 }
 
-/* -------- BUTTON FIX (IMPORTANT) -------- */
+/* BUTTON FIX */
 .stButton>button,
 div[data-testid="stDownloadButton"] button {
     background: transparent !important;
@@ -36,10 +43,6 @@ div[data-testid="stDownloadButton"] button {
     border: 1px solid white !important;
     border-radius: 6px;
     font-weight: bold;
-}
-.stButton>button:hover,
-div[data-testid="stDownloadButton"] button:hover {
-    background: rgba(255,255,255,0.2) !important;
 }
 
 /* CARD */
@@ -49,17 +52,7 @@ div[data-testid="stDownloadButton"] button:hover {
     border-radius: 10px;
 }
 
-/* RIGHT PANEL */
-.link-box {
-    background: rgba(0,0,0,0.7);
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* -------- CIRCULAR WHITE BUTTONS -------- */
+/* -------- CIRCULAR LINKS -------- */
 .circle-link {
     width: 110px;
     height: 110px;
@@ -88,6 +81,7 @@ div[data-testid="stDownloadButton"] button:hover {
     padding: 10px;
     font-weight: bold;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -133,19 +127,18 @@ def show_project(name, text):
 
     col1, col2 = st.columns([3,1])
 
-    # LEFT
     with col1:
         st.markdown(f"<div class='card'><h3>{name}</h3><br>{text.replace(chr(10),'<br>')}</div>", unsafe_allow_html=True)
 
-    # RIGHT
     with col2:
-        st.markdown("<div class='link-box'>", unsafe_allow_html=True)
         for k, v in get_links(name).items():
             st.markdown(f"<a href='{v}' target='_blank' class='circle-link'>{k}</a>", unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------- SIDEBAR ----------------
 menu = st.sidebar.radio("Navigation", ["About Me","Projects","Resume","Contact Me"])
+
+# ---------------- GLOBAL TITLE ----------------
+st.markdown("<div class='main-title'>Digital Portfolio - Manish Maltare</div>", unsafe_allow_html=True)
 
 # ---------------- ABOUT ----------------
 if menu == "About Me":
