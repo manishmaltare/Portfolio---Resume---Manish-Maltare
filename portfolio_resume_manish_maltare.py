@@ -22,7 +22,7 @@ html, body, [class*="css"] {
     color: white !important;
 }
 
-/* MAIN TITLE */
+/* TITLE */
 .main-title {
     text-align: center;
     font-size: 42px;
@@ -30,19 +30,11 @@ html, body, [class*="css"] {
     margin-bottom: 20px;
 }
 
-/* HEADINGS */
-h1, h2, h3 {
-    font-weight: 800 !important;
-}
-
 /* BUTTON FIX */
-.stButton>button,
-div[data-testid="stDownloadButton"] button {
+.stButton>button {
     background: transparent !important;
     color: white !important;
     border: 1px solid white !important;
-    border-radius: 6px;
-    font-weight: bold;
 }
 
 /* CARD */
@@ -52,7 +44,7 @@ div[data-testid="stDownloadButton"] button {
     border-radius: 10px;
 }
 
-/* -------- CIRCULAR LINKS -------- */
+/* CIRCLE LINKS */
 .circle-link {
     width: 110px;
     height: 110px;
@@ -67,9 +59,6 @@ div[data-testid="stDownloadButton"] button {
     font-weight: bold;
     text-decoration: none;
 }
-.circle-link:hover {
-    transform: scale(1.05);
-}
 
 /* FOOTER */
 .footer {
@@ -81,7 +70,6 @@ div[data-testid="stDownloadButton"] button {
     padding: 10px;
     font-weight: bold;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -102,7 +90,7 @@ rec = read_docx("Online Course Recommendations.docx")
 def get_links(name):
     return {
         "Machine Learning Insights into GDP Drivers": {
-            "Presentation": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing",
+            "Report": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing",
             "GitHub": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
             "YouTube": "https://youtu.be/y6vTDqyEPdw"
         },
@@ -137,7 +125,7 @@ def show_project(name, text):
 # ---------------- SIDEBAR ----------------
 menu = st.sidebar.radio("Navigation", ["About Me","Projects","Resume","Contact Me"])
 
-# ---------------- GLOBAL TITLE ----------------
+# ---------------- TITLE ----------------
 st.markdown("<div class='main-title'>Digital Portfolio - Manish Maltare</div>", unsafe_allow_html=True)
 
 # ---------------- ABOUT ----------------
@@ -179,8 +167,14 @@ elif menu == "Projects":
 # ---------------- RESUME ----------------
 elif menu == "Resume":
     st.markdown("## **Resume**")
-    with open("Resume - Manish Maltare - final.pdf","rb") as f:
-        st.download_button("Download Resume",f)
+
+    # ✅ DIRECT DOWNLOAD LINK (FIXED)
+    resume_url = "https://raw.githubusercontent.com/manishmaltare/Portfolio---Resume---Manish-Maltare/main/Resume%20-%20Manish%20Maltare%20-%20final.pdf"
+
+    st.markdown(
+        f"<a href='{resume_url}' target='_blank' class='circle-link'>Download</a>",
+        unsafe_allow_html=True
+    )
 
 # ---------------- CONTACT ----------------
 elif menu == "Contact Me":
