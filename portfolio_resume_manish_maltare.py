@@ -28,6 +28,20 @@ h1, h2, h3 {
     color: white !important;
 }
 
+/* -------- BUTTON FIX (IMPORTANT) -------- */
+.stButton>button,
+div[data-testid="stDownloadButton"] button {
+    background: transparent !important;
+    color: white !important;
+    border: 1px solid white !important;
+    border-radius: 6px;
+    font-weight: bold;
+}
+.stButton>button:hover,
+div[data-testid="stDownloadButton"] button:hover {
+    background: rgba(255,255,255,0.2) !important;
+}
+
 /* CARD */
 .card {
     background: rgba(0,0,0,0.6);
@@ -35,34 +49,33 @@ h1, h2, h3 {
     border-radius: 10px;
 }
 
-/* LINKS PANEL (RIGHT SIDE) */
+/* RIGHT PANEL */
 .link-box {
     background: rgba(0,0,0,0.7);
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* LINK BUTTON STYLE */
-.link-btn {
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px;
-    background: rgba(255,255,255,0.1);
-    text-align: center;
-    border-radius: 6px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-.link-btn:hover {
-    background: rgba(255,255,255,0.3);
+/* -------- CIRCULAR WHITE BUTTONS -------- */
+.circle-link {
+    width: 110px;
+    height: 110px;
+    background: white;
     color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-decoration: none;
 }
-
-/* RESUME BUTTON FIX */
-div[data-testid="stDownloadButton"] button {
-    background-color: rgba(0,0,0,0.7) !important;
-    color: white !important;
+.circle-link:hover {
+    transform: scale(1.05);
 }
 
 /* FOOTER */
@@ -96,25 +109,22 @@ def get_links(name):
     return {
         "Machine Learning Insights into GDP Drivers": {
             "Presentation": "https://drive.google.com/file/d/1Z0z1QTypvr6lqDpTgLb05LM_R5775P1T/view?usp=sharing",
-            "GitHub Script": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
-            "GitHub Deployment": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
+            "GitHub": "https://github.com/manishmaltare/Project---Machine-Learning-Insights-into-GDP-Drivers",
             "YouTube": "https://youtu.be/y6vTDqyEPdw"
         },
         "Solar Panel Regression": {
             "Presentation": "https://drive.google.com/file/d/1unMOirI9oFjn2lKJH97sVE4985Gp0mea/view",
-            "GitHub Script": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
-            "GitHub Deployment": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
+            "GitHub": "https://github.com/manishmaltare/Solar-Panel-Regression-1",
             "App": "https://solar-panel-regression-1-q3nwvmajqzqloi5aevksgq.streamlit.app/"
         },
         "NLP - Sentiment Analysis": {
             "Presentation": "https://drive.google.com/file/d/1x81_6kRZkUQtznd0JxplF-7pSEt0dZrs/view",
-            "GitHub Script": "https://github.com/manishmaltare/NLP---Sentiment-Analysis",
-            "GitHub Deployment": "https://github.com/manishmaltare/Manish-Maltare/blob/main/SVC%20App%20Deployment",
+            "GitHub": "https://github.com/manishmaltare/NLP---Sentiment-Analysis",
             "App": "https://manish-maltare-kfkyft36opaoieycyadutr.streamlit.app/"
         },
         "Online Course Recommendation System": {
             "Presentation": "https://drive.google.com/file/d/1j8fGEzcJEIPPGAcSLznOcoRYOj2cWVPS/view",
-            "GitHub Script": "https://github.com/manishmaltare/Online-Class-Recommendations/blob/main/online_course_recommendation_file.ipynb"
+            "GitHub": "https://github.com/manishmaltare/Online-Class-Recommendations/blob/main/online_course_recommendation_file.ipynb"
         }
     }[name]
 
@@ -123,15 +133,15 @@ def show_project(name, text):
 
     col1, col2 = st.columns([3,1])
 
-    # LEFT → TEXT
+    # LEFT
     with col1:
         st.markdown(f"<div class='card'><h3>{name}</h3><br>{text.replace(chr(10),'<br>')}</div>", unsafe_allow_html=True)
 
-    # RIGHT → LINKS
+    # RIGHT
     with col2:
         st.markdown("<div class='link-box'>", unsafe_allow_html=True)
         for k, v in get_links(name).items():
-            st.markdown(f"<a href='{v}' target='_blank' class='link-btn'>{k}</a>", unsafe_allow_html=True)
+            st.markdown(f"<a href='{v}' target='_blank' class='circle-link'>{k}</a>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------- SIDEBAR ----------------
