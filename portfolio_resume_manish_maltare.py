@@ -181,8 +181,8 @@ elif menu == "Contact Me":
     st.markdown("## **Contact Details**")
     st.markdown("""
     📧 manishmaltare@gmail.com  
-    📞 +91 9589945630  
-    📍 Pune
+    📞 +91 7709021845 
+    📍 Bhopal, Madhya Pradesh
     """)
 
 # ---------------- FOOTER ----------------
